@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat con el Asistente de Presupuesto - TEF</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --chat-bg: #0a0a0c;
+            --chat-panel: #141417;
+            --chat-text: #e0e0e0;
+            --msg-user: #2563eb;
+            --msg-ai: #2a2a2e;
+            --accent: #3b82f6;
+        }
+
+        body.chat-page {
+            background: var(--chat-bg);
+            color: var(--chat-text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            padding: 1rem 2rem;
+            background: rgba(20, 20, 23, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .chat-header .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+        }
+
+        .chat-header img {
+            height: 32px;
+        }
+
+        .chat-container {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) transparent;
+        }
+
+        .chat-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat-container::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 1rem 1.25rem;
+            border-radius: 1.25rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            position: relative;
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message-ai {
+            align-self: flex-start;
+            background: var(--msg-ai);
+            border-bottom-left-radius: 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .message-user {
+            align-self: flex-end;
+            background: var(--msg-user);
+            color: white;
+            border-bottom-right-radius: 0;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .chat-input-area {
+            padding: 1.5rem 2rem;
+            background: var(--chat-panel);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .input-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.5rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: border-color 0.3s;
+        }
+
+        .input-wrapper:focus-within {
+            border-color: var(--accent);
+        }
+
+        #chat-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        #send-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        #send-btn:hover {
+            background: #2563eb;
+            transform: scale(1.02);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+            box-shadow: 0 0 10px #10b981;
+        }
+
+        .typing-indicator {
+            align-self: flex-start;
+            background: var(--msg-ai);
+            padding: 0.75rem 1.25rem;
+            border-radius: 1.25rem;
+            display: none;
+        }
+
+        .dot {
+            height: 6px;
+            width: 6px;
+            background: #888;
+            border-radius: 50%;
+            display: inline-block;
+            animation: jump 1.4s infinite ease-in-out;
+        }
+
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes jump {
+            0%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-5px); }
+        }
+
+        /* Tarjeta de Especialidades (Quick Options Card) */
+        .quick-options-card {
+            align-self: flex-start;
+            background: rgba(30, 41, 59, 0.5); /* Deep blue-tinted dark */
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-left: 4px solid #3b82f6;
+            padding: 1.25rem;
+            border-radius: 1rem;
+            margin-top: 0.5rem;
+            max-width: 85%;
+            animation: fadeIn 0.6s ease-out forwards;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .quick-options-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #93c5fd;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .quick-options-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .quick-btn {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: white;
+            padding: 0.6rem 1.1rem;
+            border-radius: 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quick-btn:hover {
+            background: #2563eb;
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            color: white;
+        }
+
+        .quick-btn:active {
+            transform: translateY(0);
+        }
+
+        .quick-btn i {
+            font-style: normal;
+        }
+    </style>
+</head>
+<body class="chat-page">
+    <header class="chat-header">
+        <a href="index.html" class="logo">
+            <img src="images/logo-tef-empresa-instalaciones-electricas.png" alt="TEF Logo">
+            <span>TEF | Asistente Virtual</span>
+        </a>
+        <div class="agent-status">
+            <span class="status-dot"></span> Online
+        </div>
+    </header>
+
+    <main class="chat-container" id="chat-messages">
+        <!-- Messages will appear here -->
+    </main>
+
+    <div class="typing-indicator" id="typing-indicator">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
+    <footer class="chat-input-area">
+        <form class="input-wrapper" id="chat-form">
+            <input type="text" id="chat-input" placeholder="Escribe tu mensaje aquí..." required autocomplete="off">
+            <button type="submit" id="send-btn">Enviar</button>
+        </form>
+    </footer>
+
+    <script src="chat.js"></script>
+</body>
+</html>
