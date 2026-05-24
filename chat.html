@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitar Presupuesto de Instalación Eléctrica y Telecomunicaciones | TEF</title>
+    <meta name="description"
+        content="Pide tu presupuesto de instalación eléctrica, boletín eléctrico rápido, fibra óptica, domótica KNX o cámaras de seguridad en 1 minuto. ¡Presupuesto gratis y sin compromiso con técnicos instaladores autorizados!">
+    <meta name="keywords"
+        content="solicitar presupuesto electricista, presupuesto boletin electrico, instalador electrico autorizado presupuesto, presupuesto fibra optica, presupuesto domotica vigo, instalar camaras seguridad precio">
+    <link rel="canonical" href="https://tef-instalaciones.es/chat.html">
+
+    <!-- Open Graph for Social Share -->
+    <meta property="og:title" content="Presupuesto Gratis de Instalaciones Eléctricas y Telecomunicaciones | TEF">
+    <meta property="og:description" content="Obtén tu valoración técnica en menos de 24 horas de forma gratuita y sin compromiso por instaladores certificados por Industria.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tef-instalaciones.es/chat.html">
+    <meta property="og:image" content="https://tef-instalaciones.es/images/og-image.jpg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        :root {
+            --chat-bg: #030303;
+            --chat-panel: #0d0d11;
+            --chat-text: #f3f4f6;
+            --msg-user: #2563eb;
+            --msg-ai: #1c1c24;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --border-color: rgba(59, 130, 246, 0.15);
+        }
+
+        body.chat-page {
+            background: var(--chat-bg);
+            color: var(--chat-text);
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            overflow: hidden;
+            background-image: 
+                radial-gradient(circle at 50% -20%, rgba(37, 99, 235, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 10% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 40%);
+        }
+
+        /* Cabecera optimizada con datos de confianza */
+        .chat-header {
+            padding: 0.8rem 2rem;
+            background: rgba(13, 13, 17, 0.8);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .chat-header .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: white;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 0.02em;
+        }
+
+        .chat-header img {
+            height: 38px;
+            filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.6));
+        }
+
+        /* Indicadores de confianza */
+        .trust-badges-inline {
+            display: flex;
+            gap: 16px;
+        }
+
+        .trust-badge-inline {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent);
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 6px 12px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        @media (max-width: 900px) {
+            .trust-badges-inline {
+                display: none; /* Ocultar en móviles para ahorrar espacio */
+            }
+        }
+
+        .agent-status {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #10b981;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px #10b981;
+            animation: pulse-green 2s infinite;
+        }
+
+        @keyframes pulse-green {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* Barra de Progreso del Wizard */
+        .wizard-progress-container {
+            background: rgba(13, 13, 17, 0.4);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.08);
+            padding: 10px 20px;
+            z-index: 9;
+        }
+
+        .wizard-progress-bar {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .wizard-progress-line-bg {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .wizard-progress-line-fill {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent) 0%, #10b981 100%);
+            transform: translateY(-50%);
+            z-index: 2;
+            transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .wizard-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .wizard-step-node {
+            width: 24px;
+            height: 24px;
+            background: #14141a;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .wizard-step-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.35);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.4s;
+        }
+
+        .wizard-step.active .wizard-step-node {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .wizard-step.active .wizard-step-label {
+            color: white;
+            font-weight: 700;
+        }
+
+        .wizard-step.completed .wizard-step-node {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+        }
+
+        .wizard-step.completed .wizard-step-label {
+            color: #10b981;
+        }
+
+        /* Contenedor del Chat */
+        .chat-container {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) transparent;
+        }
+
+        .chat-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-container::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        /* Burbujas del Chat */
+        .message {
+            max-width: 78%;
+            padding: 1.1rem 1.4rem;
+            border-radius: 20px;
+            font-size: 0.98rem;
+            line-height: 1.6;
+            position: relative;
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message-ai {
+            align-self: flex-start;
+            background: var(--msg-ai);
+            border-bottom-left-radius: 2px;
+            border: 1px solid var(--border-color);
+            color: #e5e7eb;
+        }
+
+        .message-user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, var(--accent) 0%, #1d4ed8 100%);
+            color: white;
+            border-bottom-right-radius: 2px;
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.25);
+        }
+
+        /* Tarjeta Técnica de Resumen (Paso Final) */
+        .summary-card {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(16, 185, 129, 0.03) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-top: 10px;
+            width: 100%;
+            max-width: 500px;
+            align-self: flex-start;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .summary-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: white;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .summary-label {
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 500;
+        }
+
+        .summary-value {
+            color: #f3f4f6;
+            font-weight: 600;
+            text-align: right;
+            max-width: 60%;
+        }
+
+        /* Botón de Enviar Presupuesto Brillante */
+        .btn-submit-proposal {
+            width: 100%;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            margin-top: 15px;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-submit-proposal:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(16, 185, 129, 0.5);
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        }
+
+        .btn-submit-proposal:active {
+            transform: translateY(0);
+        }
+
+        /* Área de Opciones Rápidas (Grids Wizard) */
+        .quick-options-card {
+            align-self: flex-start;
+            background: rgba(13, 13, 17, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent);
+            padding: 1.25rem 1.5rem;
+            border-radius: 18px;
+            margin-top: 5px;
+            width: 100%;
+            max-width: 650px;
+            animation: fadeIn 0.5s ease-out forwards;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .quick-options-title {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #93c5fd;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .quick-options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .quick-btn {
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-align: left;
+        }
+
+        .quick-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.45);
+        }
+
+        .quick-btn i {
+            font-size: 1.2rem;
+            font-style: normal;
+        }
+
+        /* Inputs del Chat Conversacionales */
+        .chat-input-block {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            max-width: 450px;
+            align-self: flex-end;
+            animation: fadeIn 0.4s ease-out forwards;
+            margin-top: 5px;
+        }
+
+        .chat-input-block input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            color: white;
+            padding: 14px 18px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .chat-input-block input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.25);
+        }
+
+        .chat-input-block button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .chat-input-block button:hover {
+            background: #2563eb;
+            transform: scale(1.02);
+        }
+
+        /* Indicador de escritura */
+        .typing-indicator {
+            align-self: flex-start;
+            background: var(--msg-ai);
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            display: none;
+            gap: 6px;
+            border: 1px solid var(--border-color);
+            border-bottom-left-radius: 2px;
+        }
+
+        .dot {
+            height: 6px;
+            width: 6px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            display: inline-block;
+            animation: jump 1.4s infinite ease-in-out;
+        }
+
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes jump {
+            0%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-6px); }
+        }
+
+        /* Input Inferior Deshabilitado temporalmente o usado para envío libre */
+        .chat-input-area {
+            padding: 1.2rem 2rem;
+            background: var(--chat-panel);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: none; /* Oculto en el nuevo wizard porque todo es interactivo */
+        }
+
+        .input-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 6px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        #chat-input-footer {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 10px 14px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        #send-btn-footer {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        @media (max-width: 600px) {
+            .chat-container {
+                padding: 1rem;
+            }
+            .message {
+                max-width: 90%;
+            }
+            .quick-options-grid {
+                grid-template-columns: 1fr;
+            }
+            .chat-header {
+                padding: 0.8rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="chat-page">
+
+    <!-- Cabecera de Conversión -->
+    <header class="chat-header">
+        <a href="index.html" class="logo" title="Volver a la página principal de TEF">
+            <img src="images/logofinaltef.png" alt="Logotipo Oficial de TEF - Instaladores Autorizados">
+            <span>TEF | Asistente de Presupuestos</span>
+        </a>
+        <div class="trust-badges-inline">
+            <span class="trust-badge-inline" title="Empresa inscrita en el registro del Ministerio de Industria">🏅 Instalador Eléctrico Autorizado</span>
+            <span class="trust-badge-inline" title="Elaboración sin coste y sin ningún tipo de compromiso">⏱️ Presupuesto Gratis 24h</span>
+        </div>
+        <div class="agent-status" aria-live="polite">
+            <span class="status-dot"></span> Online
+        </div>
+    </header>
+
+    <!-- Barra de Progreso del Cotizador (Wizard) -->
+    <section class="wizard-progress-container" aria-label="Progreso de la solicitud de presupuesto">
+        <div class="wizard-progress-bar">
+            <div class="wizard-progress-line-bg"></div>
+            <div class="wizard-progress-line-fill" id="progress-line"></div>
+            
+            <div class="wizard-step active" id="step-0">
+                <div class="wizard-step-node">1</div>
+                <span class="wizard-step-label">Servicio</span>
+            </div>
+            <div class="wizard-step" id="step-1">
+                <div class="wizard-step-node">2</div>
+                <span class="wizard-step-label">Espacio</span>
+            </div>
+            <div class="wizard-step" id="step-2">
+                <div class="wizard-step-node">3</div>
+                <span class="wizard-step-label">Detalles</span>
+            </div>
+            <div class="wizard-step" id="step-3">
+                <div class="wizard-step-node">4</div>
+                <span class="wizard-step-label">Contacto</span>
+            </div>
+            <div class="wizard-step" id="step-4">
+                <div class="wizard-step-node">5</div>
+                <span class="wizard-step-label">Listo</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenedor Principal de la Conversación -->
+    <main class="chat-container" id="chat-messages" role="log" aria-relevant="additions" aria-label="Flujo del chat del asistente técnico">
+        <!-- Los mensajes y grids se inyectarán de forma dinámica mediante JavaScript -->
+    </main>
+
+    <!-- Indicador de Escritura del Asistente -->
+    <div class="typing-indicator" id="typing-indicator" aria-hidden="true">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
+    <!-- Iframe oculto para envíos silenciosos sin restricciones de CORS -->
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+    <!-- Formulario oculto para el envío del Asistente -->
+    <form id="hidden-budget-form" action="https://api.staticforms.dev/submit" method="POST" target="_blank" style="display:none;">
+        <input type="hidden" name="apiKey" value="sf_b67756297449d5ae7fd68fa6">
+        <input type="hidden" name="subject" id="hidden-subject">
+        <input type="text" name="Especialidad" id="hidden-especialidad">
+        <input type="text" name="Tipo de Inmueble" id="hidden-espacio">
+        <input type="text" name="Superficie Construida" id="hidden-superficie">
+        <input type="text" name="Detalles de Instalacion" id="hidden-detalles">
+        <input type="text" name="name" id="hidden-nombre">
+        <input type="text" name="phone" id="hidden-telefono">
+        <input type="text" name="email" id="hidden-email">
+    </form>
+
+    <!-- Script de lógica híbrida interactiva -->
+    <script src="chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instalación de Cámaras de Seguridad y CCTV Vigo | TEF</title>
+    <meta name="description"
+        content="¿Buscas mejorar tu seguridad? TEF instala cámaras de videovigilancia CCTV IP, alarmas y sistemas de control de accesos homologados en Vigo.">
+    <meta name="keywords"
+        content="cámaras de seguridad, CCTV, videovigilancia, alarmas, control de accesos, videoporteros, Vigo, Galicia, Comelit, Fermax, Golmar">
+    
+    <!-- Open Graph for SEO -->
+    <meta property="og:title" content="Sistemas de Seguridad Inteligente, CCTV e Intercomunicación | TEF">
+    <meta property="og:description" content="Protección total activa para hogares y empresas. Cámaras IP 4K de alta definición con Inteligencia Artificial e integración móvil.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/service_seguridad.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        .service-detail-section {
+            padding: 80px 0;
+            background: var(--bg-primary);
+            position: relative;
+            z-index: 2;
+        }
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 48px;
+            margin-top: 40px;
+        }
+        @media (max-width: 992px) {
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .brand-showcase-section {
+            padding: 80px 0;
+            background: var(--bg-secondary);
+            position: relative;
+            z-index: 2;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .brand-card {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+        .brand-card:hover {
+            border-color: rgba(var(--primary-rgb), 0.2);
+            background: rgba(var(--primary-rgb), 0.02);
+            transform: translateY(-4px);
+        }
+        .brand-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .brand-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-400);
+            text-transform: uppercase;
+        }
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-tertiary);
+            font-weight: 600;
+            margin-bottom: 24px;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .back-to-home:hover {
+            color: var(--primary-400);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ========== PARTICLES BACKGROUND ========== -->
+    <div id="particles-container" class="particles-container" aria-hidden="true"></div>
+
+    <!-- ========== NAVBAR (PILL) ========== -->
+    <nav class="navbar pill-navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo" aria-label="TEF - Volver a Inicio">
+                <img src="images/logofinaltef.png" alt="Logo TEF Instalaciones Eléctricas Profesionales" class="logo-img">
+                <span class="logo-text"></span>
+            </a>
+            <div class="nav-menu-inline" id="nav-menu-inline">
+                <ul class="mobile-nav-links">
+                    <li><a href="index.html" class="mobile-nav-link">Inicio</a></li>
+                    <li><a href="index.html#servicios" class="mobile-nav-link">Servicios</a></li>
+                    <li><a href="index.html#proyectos" class="mobile-nav-link">Proyectos</a></li>
+                    <li><a href="chat.html" class="mobile-nav-link">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero" style="min-height: 70vh; padding-top: 140px;" aria-label="Cabecera del servicio">
+        <div class="hero-grid-lines" aria-hidden="true"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <a href="index.html" class="back-to-home">← Volver al inicio</a>
+                <div class="hero-badge animate-fade-up">
+                    <span class="badge-dot"></span>
+                    🔒 Protección Activa e Inteligencia Perimetral
+                </div>
+                <h1 class="hero-title animate-fade-up delay-1">
+                    Sistemas de Seguridad <span class="gradient-text">CCTV y Videovigilancia</span>
+                </h1>
+                <p class="hero-subtitle animate-fade-up delay-2">
+                    Proteja sus activos comerciales y familiares mediante cámaras IP 4K de alta definición con detección inteligente de humanos/vehículos por Inteligencia Artificial y videoporteros de gama alta con control en la palma de su mano.
+                </p>
+                <div class="hero-cta-group animate-scale-in delay-3">
+                    <a href="chat.html" class="btn-primary">
+                        Solicitar Presupuesto de Seguridad
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== DETALLES DEL SERVICIO ========== -->
+    <section class="service-detail-section" id="detalles" aria-label="Detalles técnicos">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">⚡ Seguridad Proactiva</div>
+                <h2 class="section-title">Detalles del <span class="gradient-text">Servicio</span></h2>
+            </div>
+            
+            <div class="detail-grid">
+                <div class="glass-card" style="padding: 40px;">
+                    <h3>Protección Inteligente, Videovigilancia en Red e Intercomunicación IP</h3>
+                    <p class="about-text">
+                        En TEF entendemos que un sistema de seguridad moderno no debe limitarse a grabar pasivamente un hecho delictivo una vez que este ha ocurrido; debe ser una barrera proactiva inteligente. Diseñamos e instalamos soluciones de seguridad avanzada que integran cámaras de circuito cerrado de televisión (CCTV IP) de ultra-alta definición, sistemas de intrusión perimetral blindados y videoporteros de control digital de accesos.
+                    </p>
+                    <p class="about-text">
+                        Nuestras cámaras IP inteligentes incorporan algoritmos de Inteligencia Artificial (Deep Learning) capaces de discernir entre la presencia real de un intruso humano o un coche y el movimiento inocuo de ramas, lluvia o animales domésticos, eliminando de raíz las molestas falsas alarmas. El sistema le envía una notificación instantánea de video directo a su smartphone si se traspasa una línea perimetral virtual configurada. Adicionalmente, estructuramos redes de almacenamiento redundantes y cifradas en grabadores NVR profesionales de grado militar que garantizan la inviolabilidad de sus imágenes y la plena conformidad con la legislación de protección de datos (RGPD).
+                    </p>
+                    <h4 style="margin-top: 32px; color: var(--text-primary);">Nuestras Soluciones de Seguridad Homologadas:</h4>
+                    <ul class="about-highlights" style="margin-top: 16px;">
+                        <li class="highlight-item">
+                            <span class="highlight-icon" aria-hidden="true">✔</span>
+                            <span>Instalación de cámaras CCTV IP 4K de alta definición con visión nocturna infrarroja inteligente</span>
+                        </li>
+                        <li class="highlight-item">
+                            <span class="highlight-icon" aria-hidden="true">✔</span>
+                            <span>Configuración de analítica de video avanzada: cruce de línea perimetral y detección de rostros</span>
+                        </li>
+                        <li class="highlight-item">
+                            <span class="highlight-icon" aria-hidden="true">✔</span>
+                            <span>Sistemas de videoportero IP de alta definición integrados con redirección a app móvil</span>
+                        </li>
+                        <li class="highlight-item">
+                            <span class="highlight-icon" aria-hidden="true">✔</span>
+                            <span>Control de accesos biométrico mediante huella dactilar, lectura de tarjeta RFID o código cifrado</span>
+                        </li>
+                        <li class="highlight-item">
+                            <span class="highlight-icon" aria-hidden="true">✔</span>
+                            <span>Integración de sensores de inundación, humos y magnéticos de ventana con alertas en tiempo real</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="glass-card" style="padding: 40px; display: flex; flex-direction: column; gap: 24px;">
+                    <h3 style="font-size: 1.4rem;">Especificaciones Técnicas</h3>
+                    <div style="border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 12px;">
+                        <strong style="color: var(--primary-300); display: block;">Resolución de Video</strong>
+                        <span style="color: var(--text-secondary); font-size: 0.95rem;">Hasta 4K UHD (8 Megapíxeles) con compresión H.265+ de bajo ancho de banda</span>
+                    </div>
+                    <div style="border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 12px;">
+                        <strong style="color: var(--primary-300); display: block;">Visión Nocturna</strong>
+                        <span style="color: var(--text-secondary); font-size: 0.95rem;">Tecnología Starlight e infrarrojos activos de hasta 50 metros en oscuridad total</span>
+                    </div>
+                    <div style="border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 12px;">
+                        <strong style="color: var(--primary-300); display: block;">Almacenamiento Local Cifrado</strong>
+                        <span style="color: var(--text-secondary); font-size: 0.95rem;">Grabadores NVR de alta fiabilidad con discos duros específicos de videovigilancia (WD Purple)</span>
+                    </div>
+                    <div>
+                        <strong style="color: var(--primary-300); display: block;">Legislación RGPD</strong>
+                        <span style="color: var(--text-secondary); font-size: 0.95rem;">Cartelería oficial informativa, enmascaramiento de zonas públicas e informes de registro de grabaciones</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== MARCAS DE CONFIANZA ========== -->
+    <section class="brand-showcase-section" id="marcas" aria-label="Marcas de confianza">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">🏅 Blindaje Profesional</div>
+                <h2 class="section-title">Marcas Premium y <span class="gradient-text">Por Qué las Elegimos</span></h2>
+                <p class="section-subtitle">Proteger a tu familia y tus activos empresariales exige el uso del software y hardware de videovigilancia más blindado del sector.</p>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <!-- Brand: COMELIT -->
+                <div class="brand-card">
+                    <div class="brand-header">
+                        <span style="font-size: 2rem;">🔒</span>
+                        <h3 class="brand-name">COMELIT (CCTV IP Profesional e Inteligente)</h3>
+                    </div>
+                    <p class="about-text">
+                        Para toda la electrónica de circuito cerrado de televisión (cámaras de seguridad, grabadores NVR) y videoporteros IP de alta gama que instalamos en TEF, confiamos plenamente en el fabricante de lujo italiano **Comelit**.
+                    </p>
+                    <p class="about-text">
+                        **¿Por qué utilizamos Comelit para seguridad y CCTV?**
+                        Comelit destaca por la extraordinaria nitidez y calidad de lente de sus cámaras de seguridad. Sus sensores CMOS profesionales capturan imágenes en color incluso en condiciones de bajísima iluminación natural (tecnología de luz baja), facilitando enormemente la identificación de rostros o matrículas en la oscuridad. Su firmware propietario y grabadores de almacenamiento cuentan con un cifrado de red extremadamente seguro que bloquea cualquier vulnerabilidad frente a ataques cibernéticos y de hacking externo. La aplicación móvil de Comelit es ultra-estable, garantizando que el usuario reciba la llamada de su portero o la alerta de intrusión perimetral en tiempo real, sin demoras ni cuelgues.
+                    </p>
+                </div>
+
+                <!-- Brand: FERMAX y GOLMAR -->
+                <div class="brand-card">
+                    <div class="brand-header">
+                        <span style="font-size: 2rem;">📞</span>
+                        <h3 class="brand-name">FERMAX / GOLMAR (Control de Accesos e Intercomunicación de Alta Resistencia)</h3>
+                    </div>
+                    <p class="about-text">
+                        Para placas de calle y sistemas de intercomunicación de accesos en entornos comerciales, oficinas y grandes comunidades de vecinos, confiamos en **Fermax** y **Golmar**.
+                    </p>
+                    <p class="about-text">
+                        **¿Por qué las elegimos?**
+                        Ambas marcas representan la excelencia nacional en intercomunicación de seguridad. Sus placas de calle están construidas con aleaciones metálicas antivándalo (IK09/IK10) con una estanqueidad total al agua de lluvia gallega (IP65), resistiendo de manera sobresaliente el desgaste físico en la intemperie. Sus lectores biométricos y de tarjetas RFID de proximidad tienen un tiempo de respuesta de microsegundos y son extremadamente robustos ante el uso intensivo continuo, asegurando que el acceso físico a su edificio se mantenga firmemente bloqueado a toda persona no autorizada.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FINAL CTA ========== -->
+    <section class="cta-final" aria-label="Solicitar contacto">
+        <div class="cta-glow" aria-hidden="true"></div>
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">¿Deseas mejorar de forma real la seguridad de tu hogar o empresa?</h2>
+                <p class="cta-subtitle">Nuestros especialistas autorizados realizarán una auditoría técnica de seguridad de tus accesos de manera gratuita.</p>
+                <a href="chat.html" class="btn-primary btn-large pulse-glow">
+                    Chatear con el Asistente de Presupuesto
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2026 TEF. Todos los derechos reservados.</p>
+                <p class="footer-made">Instalaciones Homologadas de CCTV IP, Seguridad y Control de Accesos</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+
+</html>
