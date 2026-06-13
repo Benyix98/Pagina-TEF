@@ -567,54 +567,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             card.className = 'summary-card';
 
-            let superficieRow = "";
-            if (wizardData.superficieLabel) {
-                superficieRow = `
-                <div class="summary-item">
-                    <span class="summary-label">Superficie:</span>
-                    <span class="summary-value">${wizardData.superficieLabel}</span>
-                </div>`;
-            }
+            const row = (label, value) => value
+                ? `<div class="summary-item"><span class="summary-label">${label}</span><span class="summary-value">${value}</span></div>`
+                : '';
 
             card.innerHTML = `
                 <div class="summary-title">📝 Resumen de tu solicitud</div>
-                <div class="summary-item">
-                    <span class="summary-label">Especialidad:</span>
-                    <span class="summary-value">${wizardData.servicioLabel}</span>
-                </div>
-                <div class="summary-item">
-                    <span class="summary-label">Edificación:</span>
-                    <span class="summary-value">${wizardData.espacioLabel}</span>
-                </div>
-                ${superficieRow}
-                <div class="summary-item">
-                    <span class="summary-label">Detalles del Proyecto:</span>
-                    <span class="summary-value">${wizardData.detallesLabel}</span>
-                </div>
-                <div class="summary-item">
-                    <span class="summary-label">Marca Preferida:</span>
-                    <span class="summary-value">${wizardData.marcaLabel}</span>
-                </div>
-                <div class="summary-item">
-                    <span class="summary-label">Ubicación:</span>
-                    <span class="summary-value">${wizardData.ubicacion}</span>
-                </div>
-                <div class="summary-item">
-                    <span class="summary-label">Plazo Estimado:</span>
-                    <span class="summary-value">${wizardData.plazoLabel}</span>
-                </div>
-                <div class="summary-item">
-                    <span class="summary-label">Cliente:</span>
-                    <span class="summary-value">${wizardData.nombre}</span>
-                </div>
-                <div class="summary-item">
-                    <span class="summary-label">Teléfono:</span>
-                    <span class="summary-value">${wizardData.telefono}</span>
-                </div>
-                <div class="summary-item">
-                    <span class="summary-label">Correo:</span>
-                    <span class="summary-value">${wizardData.email}</span>
-                </div>
+                ${row('Especialidad:', wizardData.servicioLabel)}
+                ${row('Edificación:', wizardData.espacioLabel)}
+                ${row('Superficie:', wizardData.superficieLabel)}
+                ${row('Detalles del Proyecto:', wizardData.detallesLabel)}
+                ${row('Marca Preferida:', wizardData.marcaLabel)}
+                ${row('Ubicación:', wizardData.ubicacion)}
+                ${row('Plazo Estimado:', wizardData.plazoLabel)}
+                ${row('Cliente:', wizardData.nombre)}
+                ${row('Teléfono:', wizardData.telefono)}
+                ${row('Correo:', wizardData.email)}
                 <button class="btn-submit-proposal" id="btn-submit-proposal">
                     Enviar y recibir presupuesto →
                 </button>
