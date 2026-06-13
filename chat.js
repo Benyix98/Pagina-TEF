@@ -1,4 +1,4 @@
-/**
+﻿/**
  * TEF - Telecomunicaciones e Instalaciones Eléctricas
  * chat.js - Lógica integrada del Asistente Virtual
  * - Página dedicada (chat.html): Cotizador Conversacional Híbrido y optimizado para SEO.
@@ -8,6 +8,11 @@
 'use strict';
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Inyectar API key desde <meta name="sf-key"> en los formularios ocultos
+    const sfKey = document.querySelector('meta[name="sf-key"]')?.content || '';
+    const budgetApiKey = document.getElementById('budget-api-key');
+    if (budgetApiKey && sfKey) budgetApiKey.value = sfKey;
+
     // Detectar si estamos en la página de chat dedicada
     const isChatPage = document.body.classList.contains('chat-page');
 
@@ -93,13 +98,11 @@ document.addEventListener('DOMContentLoaded', () => {
             updateProgressBar(0);
             await showTyping(1200);
             addMessage(
-                "¡Hola! Bienvenido al portal de presupuestos técnicos de <strong>TEF</strong>. " +
-                "Soy tu Asistente Virtual y he sido entrenado por nuestros instaladores autorizados para ayudarte " +
-                "a cotizar tu proyecto de forma <strong>100% gratuita y sin compromiso</strong> en menos de 1 minuto.<br><br>" +
-                "Para comenzar, ¿qué especialidad técnica o de ingeniería necesitas cubrir hoy?",
+                "Hola, soy Carlos de <strong>TEF</strong>. Cuéntame qué necesitas y te preparo un presupuesto sin coste — te llega hoy mismo.<br><br>" +
+                "¿Qué tipo de trabajo estás buscando?",
                 'ai'
             );
-            
+
             await showTyping(500);
             showServiceGrid();
         }
@@ -110,26 +113,26 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const title = document.createElement('div');
             title.classList.add('quick-options-title');
-            title.innerHTML = '⚡ Seleccione Especialidad Certificada';
+            title.innerHTML = '¿Qué necesitas?';
             card.appendChild(title);
 
             const grid = document.createElement('div');
             grid.classList.add('quick-options-grid');
             
             const services = [
-                { id: 'electrica', label: '⚡ Instalación Eléctrica', desc: 'Cuadros, boletines, obra nueva' },
-                { id: 'fibra', label: '📡 Red de Fibra Óptica', desc: 'Cableado estructurado, redes datos' },
-                { id: 'domotica', label: '🏠 Domótica KNX', desc: 'Hogar inteligente, climatización eficiente' },
-                { id: 'seguridad', label: '🔒 Seguridad y CCTV', desc: 'Cámaras 4K, videoporteros IP' }
+                { id: 'electrica', label: 'Instalación Eléctrica', desc: 'Cuadros, boletines, obra nueva' },
+                { id: 'fibra', label: 'Red de Fibra Óptica', desc: 'Cableado estructurado, redes datos' },
+                { id: 'domotica', label: 'Domótica KNX', desc: 'Hogar inteligente, climatización eficiente' },
+                { id: 'seguridad', label: 'Seguridad y CCTV', desc: 'Cámaras 4K, videoporteros IP' }
             ];
 
             services.forEach(item => {
                 const btn = document.createElement('button');
                 btn.classList.add('quick-btn');
-                btn.innerHTML = `<i>${item.label.split(' ')[0]}</i> <div><strong>${item.label.substring(2)}</strong><br><span style="font-size:0.72rem; opacity:0.6; font-weight:400;">${item.desc}</span></div>`;
+                btn.innerHTML = `<div><strong>${item.label}</strong><br><span style="font-size:0.72rem; opacity:0.6; font-weight:400;">${item.desc}</span></div>`;
                 btn.onclick = () => {
                     wizardData.servicio = item.id;
-                    wizardData.servicioLabel = item.label.substring(2);
+                    wizardData.servicioLabel = item.label;
                     addMessage(item.label, 'user');
                     card.remove();
                     goToStep1();
@@ -148,8 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
             updateProgressBar(1);
             await showTyping(1000);
             addMessage(
-                `Excelente elección. Para poder dimensionar correctamente tu presupuesto de <strong>${wizardData.servicioLabel}</strong>, ` +
-                `¿para qué tipo de espacio o edificación requieres el servicio?`,
+                `Perfecto, <strong>${wizardData.servicioLabel}</strong>. ` +
+                `¿Dónde hay que hacer el trabajo?`,
                 'ai'
             );
             await showTyping(400);
@@ -162,26 +165,26 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const title = document.createElement('div');
             title.classList.add('quick-options-title');
-            title.innerHTML = '🏢 Seleccione el Tipo de Edificación';
+            title.innerHTML = '¿Dónde es el trabajo?';
             card.appendChild(title);
 
             const grid = document.createElement('div');
             grid.classList.add('quick-options-grid');
             
             const spaces = [
-                { id: 'hogar', label: '🏠 Vivienda / Piso', desc: 'Residencial unifamiliar o piso' },
-                { id: 'comunidad', label: '🏢 Comunidad de Vecinos', desc: 'Fincas, portales, TDT común' },
-                { id: 'oficina', label: '💼 Local / Oficina', desc: 'Espacios comerciales, pymes' },
-                { id: 'industrial', label: '🏭 Nave Industrial', desc: 'Instalación de alta potencia' }
+                { id: 'hogar', label: 'Vivienda / Piso', desc: 'Residencial unifamiliar o piso' },
+                { id: 'comunidad', label: 'Comunidad de Vecinos', desc: 'Fincas, portales, TDT común' },
+                { id: 'oficina', label: 'Local / Oficina', desc: 'Espacios comerciales, pymes' },
+                { id: 'industrial', label: 'Nave Industrial', desc: 'Instalación de alta potencia' }
             ];
 
             spaces.forEach(item => {
                 const btn = document.createElement('button');
                 btn.classList.add('quick-btn');
-                btn.innerHTML = `<i>${item.label.split(' ')[0]}</i> <div><strong>${item.label.substring(2)}</strong><br><span style="font-size:0.72rem; opacity:0.6; font-weight:400;">${item.desc}</span></div>`;
+                btn.innerHTML = `<div><strong>${item.label}</strong><br><span style="font-size:0.72rem; opacity:0.6; font-weight:400;">${item.desc}</span></div>`;
                 btn.onclick = () => {
                     wizardData.espacio = item.id;
-                    wizardData.espacioLabel = item.label.substring(2);
+                    wizardData.espacioLabel = item.label;
                     addMessage(item.label, 'user');
                     card.remove();
                     
@@ -209,27 +212,27 @@ document.addEventListener('DOMContentLoaded', () => {
             let ranges = [];
 
             if (wizardData.espacio === 'hogar') {
-                questionText = `Estupendo. ¿Qué superficie construida aproximada en metros cuadrados (m²) tiene la vivienda?`;
+                questionText = `¿Más o menos cuántos metros tiene la vivienda?`;
                 ranges = [
-                    { id: 'hogar_pequeno', label: '🏢 Menos de 60 m²', desc: 'Pisos pequeños o estudios' },
-                    { id: 'hogar_mediano', label: '🏠 Entre 60 m² y 100 m²', desc: 'Apartamentos o pisos estándar' },
-                    { id: 'hogar_grande', label: '🏡 Entre 100 m² y 150 m²', desc: 'Pisos grandes o casas medianas' },
-                    { id: 'hogar_xl', label: '🏰 Más de 150 m²', desc: 'Chalets o unifamiliares de gran tamaño' }
+                    { id: 'hogar_pequeno', label: 'Menos de 60 m²', desc: 'Pisos pequeños o estudios' },
+                    { id: 'hogar_mediano', label: 'Entre 60 m² y 100 m²', desc: 'Apartamentos o pisos estándar' },
+                    { id: 'hogar_grande', label: 'Entre 100 m² y 150 m²', desc: 'Pisos grandes o casas medianas' },
+                    { id: 'hogar_xl', label: 'Más de 150 m²', desc: 'Chalets o unifamiliares de gran tamaño' }
                 ];
             } else if (wizardData.espacio === 'oficina') {
-                questionText = `Entendido. ¿De qué superficie aproximada en metros cuadrados (m²) dispone el local u oficina?`;
+                questionText = `¿Cuántos metros tiene el local u oficina, más o menos?`;
                 ranges = [
-                    { id: 'ofi_pequeno', label: '💼 Menos de 80 m²', desc: 'Despachos o pequeños locales comerciales' },
-                    { id: 'ofi_mediano', label: '🏢 Entre 80 m² y 150 m²', desc: 'Oficinas medianas o tiendas estándar' },
-                    { id: 'ofi_grande', label: '🏬 Entre 150 m² y 300 m²', desc: 'Espacios de trabajo corporativos amplios' },
-                    { id: 'ofi_xl', label: '🏢 Más de 300 m²', desc: 'Sedes de empresas o naves de oficinas' }
+                    { id: 'ofi_pequeno', label: 'Menos de 80 m²', desc: 'Despachos o pequeños locales comerciales' },
+                    { id: 'ofi_mediano', label: 'Entre 80 m² y 150 m²', desc: 'Oficinas medianas o tiendas estándar' },
+                    { id: 'ofi_grande', label: 'Entre 150 m² y 300 m²', desc: 'Espacios de trabajo corporativos amplios' },
+                    { id: 'ofi_xl', label: 'Más de 300 m²', desc: 'Sedes de empresas o naves de oficinas' }
                 ];
             } else if (wizardData.espacio === 'industrial') {
-                questionText = `Perfecto. ¿Qué superficie en metros cuadrados (m²) tiene la nave industrial aproximadamente?`;
+                questionText = `¿Y la nave, tienes idea de cuántos metros tiene aproximadamente?`;
                 ranges = [
-                    { id: 'ind_pequeno', label: '🏭 Menos de 300 m²', desc: 'Talleres pequeños o almacenes locales' },
-                    { id: 'ind_mediano', label: '🏭 Entre 300 m² y 1000 m²', desc: 'Naves industriales de tamaño estándar' },
-                    { id: 'ind_grande', label: '🏭 Más de 1000 m²', desc: 'Grandes centros logísticos o de producción' }
+                    { id: 'ind_pequeno', label: 'Menos de 300 m²', desc: 'Talleres pequeños o almacenes locales' },
+                    { id: 'ind_mediano', label: 'Entre 300 m² y 1000 m²', desc: 'Naves industriales de tamaño estándar' },
+                    { id: 'ind_grande', label: 'Más de 1000 m²', desc: 'Grandes centros logísticos o de producción' }
                 ];
             }
 
@@ -244,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const title = document.createElement('div');
             title.classList.add('quick-options-title');
-            title.innerHTML = '📏 Seleccione Superficie en m²';
+            title.innerHTML = 'Superficie en m²';
             card.appendChild(title);
 
             const grid = document.createElement('div');
@@ -253,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
             rangesList.forEach(item => {
                 const btn = document.createElement('button');
                 btn.classList.add('quick-btn');
-                btn.innerHTML = `<i>📏</i> <div><strong>${item.label}</strong><br><span style="font-size:0.72rem; opacity:0.6; font-weight:400;">${item.desc}</span></div>`;
+                btn.innerHTML = `<div><strong>${item.label}</strong><br><span style="font-size:0.72rem; opacity:0.6; font-weight:400;">${item.desc}</span></div>`;
                 btn.onclick = () => {
                     wizardData.superficie = item.id;
                     wizardData.superficieLabel = item.label;
@@ -279,36 +282,36 @@ document.addEventListener('DOMContentLoaded', () => {
             let details = [];
 
             if (wizardData.servicio === 'electrica') {
-                introText = `Perfecto. Como <strong>instalador eléctrico autorizado</strong> en normativa REBT, indícanos qué tipo de trabajo o certificación necesitas realizar en tu <strong>${wizardData.espacioLabel}</strong>:`;
+                introText = `Bien. ¿Qué tipo de trabajo eléctrico necesitas en tu <strong>${wizardData.espacioLabel}</strong>?`;
                 details = [
-                    { id: 'reforma', label: '🔌 Reforma Eléctrica o Reparación', desc: 'Cambios de cableado, enchufes o iluminación' },
-                    { id: 'obra_nueva', label: '🏗️ Instalación en Obra Nueva', desc: 'Proyecto eléctrico completo e integral' },
-                    { id: 'boletin', label: '📄 Boletín Eléctrico / Certificación', desc: 'Alta de luz oficial y aumento de potencia' },
-                    { id: 'cuadros', label: '⚡ Cuadros Eléctricos / Acometida', desc: 'Mantenimiento o montaje de protecciones' }
+                    { id: 'reforma', label: 'Reforma Eléctrica o Reparación', desc: 'Cambios de cableado, enchufes o iluminación' },
+                    { id: 'obra_nueva', label: 'Instalación en Obra Nueva', desc: 'Proyecto eléctrico completo e integral' },
+                    { id: 'boletin', label: 'Boletín Eléctrico / Certificación', desc: 'Alta de luz oficial y aumento de potencia' },
+                    { id: 'cuadros', label: 'Cuadros Eléctricos / Acometida', desc: 'Mantenimiento o montaje de protecciones' }
                 ];
             } else if (wizardData.servicio === 'fibra') {
-                introText = `Excelente. Para estructurar correctamente la <strong>red de fibra óptica y cableado estructurado</strong>, indícanos cuántos puestos o puntos de conexión necesitas cablear:`;
+                introText = `¿Cuántos puntos de red necesitas cablear más o menos?`;
                 details = [
-                    { id: 'pequeno', label: '💻 Red básica (1 a 5 puestos)', desc: 'Pequeñas instalaciones domésticas o pyme' },
-                    { id: 'mediano', label: '🏢 Red mediana (5 a 20 puestos)', desc: 'Oficinas corporativas estándar' },
-                    { id: 'grande', label: '🌐 Red corporativa (+20 puestos)', desc: 'Infraestructuras comerciales críticas' },
-                    { id: 'enlace', label: '🔗 Enlace de Fibra o Armario Rack', desc: 'Fusión de fibra y distribución central' }
+                    { id: 'pequeno', label: 'Red básica (1 a 5 puestos)', desc: 'Pequeñas instalaciones domésticas o pyme' },
+                    { id: 'mediano', label: 'Red mediana (5 a 20 puestos)', desc: 'Oficinas corporativas estándar' },
+                    { id: 'grande', label: 'Red corporativa (+20 puestos)', desc: 'Infraestructuras comerciales críticas' },
+                    { id: 'enlace', label: 'Enlace de Fibra o Armario Rack', desc: 'Fusión de fibra y distribución central' }
                 ];
             } else if (wizardData.servicio === 'domotica') {
-                introText = `Estupendo. La <strong>domótica profesional KNX</strong> aporta máxima eficiencia y confort. ¿Cuál es el enfoque principal de automatización de tu proyecto?`;
+                introText = `¿Qué es lo que quieres automatizar principalmente?`;
                 details = [
-                    { id: 'clima', label: '🌡️ Climatización Eficiente', desc: 'Ahorro energético inteligente en calefacción/AC' },
-                    { id: 'iluminacion', label: '💡 Iluminación LED y Persianas', desc: 'Control de escenarios y automatismos lumínicos' },
-                    { id: 'seguridad', label: '🛡️ Seguridad y Control de accesos', desc: 'Videoporteros IP y alarmas integradas' },
-                    { id: 'integral', label: '🧠 Integración Domótica Integral', desc: 'Control completo automatizado de alta gama' }
+                    { id: 'clima', label: 'Climatización Eficiente', desc: 'Ahorro energético inteligente en calefacción/AC' },
+                    { id: 'iluminacion', label: 'Iluminación LED y Persianas', desc: 'Control de escenarios y automatismos lumínicos' },
+                    { id: 'seguridad', label: 'Seguridad y Control de accesos', desc: 'Videoporteros IP y alarmas integradas' },
+                    { id: 'integral', label: 'Integración Domótica Integral', desc: 'Control completo automatizado de alta gama' }
                 ];
             } else if (wizardData.servicio === 'seguridad') {
-                introText = `Entendido. La <strong>instalación de cámaras de seguridad CCTV</strong> y videoporteros garantiza tu tranquilidad. ¿Qué volumen de equipos estimas instalar?`;
+                introText = `¿Qué tipo de sistema de seguridad necesitas?`;
                 details = [
-                    { id: 'cctv_pequeno', label: '📹 Kit básico (1 a 3 cámaras 4K)', desc: 'Vigilancia para accesos principales y App' },
-                    { id: 'cctv_mediano', label: '📹 Kit mediano (4 a 8 cámaras)', desc: 'Protección perimetral inteligente' },
-                    { id: 'cctv_grande', label: '🏢 CCTV Comercial (+8 cámaras)', desc: 'Sistemas profesionales para locales e industrias' },
-                    { id: 'portero', label: '🔔 Videoportero IP inteligente', desc: 'Control de accesos remotos y videoportero' }
+                    { id: 'cctv_pequeno', label: 'Kit básico (1 a 3 cámaras 4K)', desc: 'Vigilancia para accesos principales y App' },
+                    { id: 'cctv_mediano', label: 'Kit mediano (4 a 8 cámaras)', desc: 'Protección perimetral inteligente' },
+                    { id: 'cctv_grande', label: 'CCTV Comercial (+8 cámaras)', desc: 'Sistemas profesionales para locales e industrias' },
+                    { id: 'portero', label: 'Videoportero IP inteligente', desc: 'Control de accesos remotos y videoportero' }
                 ];
             }
 
@@ -323,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const title = document.createElement('div');
             title.classList.add('quick-options-title');
-            title.innerHTML = '⚙️ Seleccione el Alcance Técnico';
+            title.innerHTML = '¿Cuál es tu caso?';
             card.appendChild(title);
 
             const grid = document.createElement('div');
@@ -332,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
             detailsList.forEach(item => {
                 const btn = document.createElement('button');
                 btn.classList.add('quick-btn');
-                btn.innerHTML = `<i>⚙️</i> <div><strong>${item.label}</strong><br><span style="font-size:0.72rem; opacity:0.6; font-weight:400;">${item.desc}</span></div>`;
+                btn.innerHTML = `<div><strong>${item.label}</strong><br><span style="font-size:0.72rem; opacity:0.6; font-weight:400;">${item.desc}</span></div>`;
                  btn.onclick = () => {
                      wizardData.detalles = item.id;
                      wizardData.detallesLabel = item.label;
@@ -352,7 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
         async function goToBrandStep() {
             await showTyping(1000);
             addMessage(
-                "Para ajustar el presupuesto con el material ideal, ¿tienes preferencia por alguna **marca de productos** en específico entre las que trabajamos?",
+                "¿Tienes preferencia de marca o te doy yo la que mejor encaja para tu caso?",
                 'ai'
             );
             await showTyping(400);
@@ -365,27 +368,27 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const title = document.createElement('div');
             title.classList.add('quick-options-title');
-            title.innerHTML = '🏷️ Seleccione Marca Preferida';
+            title.innerHTML = 'Marca preferida';
             card.appendChild(title);
 
             const grid = document.createElement('div');
             grid.classList.add('quick-options-grid');
 
             const brands = [
-                { id: 'televes', label: '📡 Televés', desc: 'Líder en antenas y telecomunicaciones' },
-                { id: 'fermax', label: '📞 Fermax', desc: 'Videoporteros e intercomunicación de alta gama' },
-                { id: 'tegui', label: '🔌 Tegui / Legrand', desc: 'Material eléctrico y telefonillos residenciales' },
-                { id: 'knx', label: '🏠 KNX / Domótica Estándar', desc: 'Sistemas inteligentes domóticos' },
-                { id: 'sin_preferencia', label: '⚖️ Sin preferencia', desc: 'La mejor opción técnica recomendada por TEF' }
+                { id: 'televes', label: 'Televés', desc: 'Líder en antenas y telecomunicaciones' },
+                { id: 'fermax', label: 'Fermax', desc: 'Videoporteros e intercomunicación de alta gama' },
+                { id: 'tegui', label: 'Tegui / Legrand', desc: 'Material eléctrico y telefonillos residenciales' },
+                { id: 'knx', label: 'KNX / Domótica Estándar', desc: 'Sistemas inteligentes domóticos' },
+                { id: 'sin_preferencia', label: 'Sin preferencia', desc: 'La mejor opción técnica recomendada por TEF' }
             ];
 
             brands.forEach(item => {
                 const btn = document.createElement('button');
                 btn.classList.add('quick-btn');
-                btn.innerHTML = `<i>${item.label.split(' ')[0]}</i> <div><strong>${item.label.substring(2)}</strong><br><span style="font-size:0.72rem; opacity:0.6; font-weight:400;">${item.desc}</span></div>`;
+                btn.innerHTML = `<div><strong>${item.label}</strong><br><span style="font-size:0.72rem; opacity:0.6; font-weight:400;">${item.desc}</span></div>`;
                 btn.onclick = () => {
                     wizardData.marca = item.id;
-                    wizardData.marcaLabel = item.label.substring(2);
+                    wizardData.marcaLabel = item.label;
                     addMessage(item.label, 'user');
                     card.remove();
                     goToTimelineStep();
@@ -401,7 +404,7 @@ document.addEventListener('DOMContentLoaded', () => {
         async function goToTimelineStep() {
             await showTyping(1000);
             addMessage(
-                "Excelente elección. ¿Cuál es el **plazo o urgencia** estimado para comenzar con la instalación?",
+                "¿Y para cuándo necesitas tenerlo listo?",
                 'ai'
             );
             await showTyping(400);
@@ -414,25 +417,25 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const title = document.createElement('div');
             title.classList.add('quick-options-title');
-            title.innerHTML = '📅 Seleccione Plazo Estimado';
+            title.innerHTML = '¿Cuándo lo necesitas?';
             card.appendChild(title);
 
             const grid = document.createElement('div');
             grid.classList.add('quick-options-grid');
 
             const timelines = [
-                { id: 'urgente', label: '⚡ Inmediato (menos de 15 días)', desc: 'Requiere planificación y prioridad técnica' },
-                { id: 'medio', label: '📅 Próximo mes', desc: 'Instalación planificada estándar' },
-                { id: 'largo', label: '🗓️ Planificación (+3 meses)', desc: 'Fase de estudio y presupuesto previo' }
+                { id: 'urgente', label: 'Inmediato (menos de 15 días)', desc: 'Requiere planificación y prioridad técnica' },
+                { id: 'medio', label: 'Próximo mes', desc: 'Instalación planificada estándar' },
+                { id: 'largo', label: 'Planificación (+3 meses)', desc: 'Fase de estudio y presupuesto previo' }
             ];
 
             timelines.forEach(item => {
                 const btn = document.createElement('button');
                 btn.classList.add('quick-btn');
-                btn.innerHTML = `<i>${item.label.split(' ')[0]}</i> <div><strong>${item.label.substring(2)}</strong><br><span style="font-size:0.72rem; opacity:0.6; font-weight:400;">${item.desc}</span></div>`;
+                btn.innerHTML = `<div><strong>${item.label}</strong><br><span style="font-size:0.72rem; opacity:0.6; font-weight:400;">${item.desc}</span></div>`;
                 btn.onclick = () => {
                     wizardData.plazo = item.id;
-                    wizardData.plazoLabel = item.label.substring(2);
+                    wizardData.plazoLabel = item.label;
                     addMessage(item.label, 'user');
                     card.remove();
                     goToLocationStep();
@@ -448,10 +451,10 @@ document.addEventListener('DOMContentLoaded', () => {
         async function goToLocationStep() {
             await showTyping(1000);
             addMessage(
-                "Entendido. Para calcular adecuadamente la logística de los vehículos técnicos, ¿en qué **municipio o localidad** se ubica el proyecto?",
+                "¿En qué zona de Madrid está el trabajo? (barrio o municipio)",
                 'ai'
             );
-            showInputBlock('text', 'Ej: Vigo, Redondela, Pontevedra...', (val) => {
+            showInputBlock('text', 'Ej: Vallecas, Alcobendas, Getafe...', (val) => {
                 wizardData.ubicacion = val;
                 addMessage(val, 'user');
                 goToStep3();
@@ -465,9 +468,7 @@ document.addEventListener('DOMContentLoaded', () => {
             updateProgressBar(3);
             await showTyping(1200);
             addMessage(
-                `Estupendo. Contamos con toda la información técnica base. ` +
-                `Para poder enviarte tu <strong>presupuesto gratuito en menos de 24 horas</strong> elaborado por nuestros ` +
-                `electricistas y técnicos autorizados por el Ministerio de Industria, indícanos por favor tu <strong>Nombre completo</strong>:`,
+                `Perfecto, ya tengo todo lo que necesito. Dime tu <strong>nombre</strong> para poner el presupuesto a tu nombre:`,
                 'ai'
             );
             showInputBlock('text', 'Escribe tu nombre y apellidos...', (val) => {
@@ -480,8 +481,7 @@ document.addEventListener('DOMContentLoaded', () => {
         async function askForPhone() {
             await showTyping(1000);
             addMessage(
-                `Muchas gracias, <strong>${wizardData.nombre}</strong>. ¿A qué <strong>número de teléfono</strong> podemos llamarte ` +
-                `en caso de que nuestro departamento de ingeniería necesite resolver alguna duda o agendar una visita técnica gratuita en tu <strong>${wizardData.espacioLabel}</strong>?`,
+                `<strong>${wizardData.nombre}</strong>, ¿cuál es tu teléfono? Te llamamos para cuadrar los detalles si hace falta.`,
                 'ai'
             );
             showInputBlock('tel', 'Ej: 600000000', (val) => {
@@ -490,7 +490,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     addMessage(val, 'user');
                     askForEmail();
                 } else {
-                    addMessage("❌ Por favor, introduce un número de teléfono válido de 9 dígitos (ej. 600000000).", 'ai');
+                    addMessage(" Por favor, introduce un número de teléfono válido de 9 dígitos (ej. 600000000).", 'ai');
                     askForPhone();
                 }
             });
@@ -499,8 +499,7 @@ document.addEventListener('DOMContentLoaded', () => {
         async function askForEmail() {
             await showTyping(1000);
             addMessage(
-                `Excelente, <strong>${wizardData.nombre}</strong>. Por último, ¿a qué <strong>dirección de correo electrónico</strong> ` +
-                `deseas que enviemos la propuesta formal y el desglose de costes técnicos?`,
+                `Y tu email, para mandarte el presupuesto por escrito:`,
                 'ai'
             );
             showInputBlock('email', 'Ej: tu@email.com', (val) => {
@@ -509,7 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     addMessage(val, 'user');
                     showSummaryStep();
                 } else {
-                    addMessage("❌ Por favor, introduce una dirección de correo electrónico válida (ej. cliente@correo.com).", 'ai');
+                    addMessage(" Por favor, introduce una dirección de correo electrónico válida (ej. cliente@correo.com).", 'ai');
                     askForEmail();
                 }
             });
@@ -556,9 +555,7 @@ document.addEventListener('DOMContentLoaded', () => {
         async function showSummaryStep() {
             await showTyping(1200);
             addMessage(
-                `Perfecto. Hemos estructurado tu <strong>solicitud de presupuesto técnico</strong> de forma integral. ` +
-                `A continuación, se detalla la Ficha de Cotización que será revisada por nuestro instalador eléctrico o de telecomunicaciones certificado. ` +
-                `Por favor, confirma que toda la información técnica y de contacto sea correcta antes de procesar el envío:`,
+                `Repasa los datos y si todo está bien, dale al botón:`,
                 'ai'
             );
 
@@ -580,7 +577,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             card.innerHTML = `
-                <div class="summary-title">📝 Ficha Técnica de Presupuesto</div>
+                <div class="summary-title">📝 Resumen de tu solicitud</div>
                 <div class="summary-item">
                     <span class="summary-label">Especialidad:</span>
                     <span class="summary-value">${wizardData.servicioLabel}</span>
@@ -619,7 +616,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="summary-value">${wizardData.email}</span>
                 </div>
                 <button class="btn-submit-proposal" id="btn-submit-proposal">
-                    🚀 Enviar Solicitud de Presupuesto Oficial
+                    Enviar y recibir presupuesto →
                 </button>
             `;
 
@@ -630,7 +627,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (submitBtn) {
                 submitBtn.onclick = () => {
                     submitBtn.disabled = true;
-                    submitBtn.textContent = 'Enviando Ficha Técnica...';
+                    submitBtn.textContent = 'Enviando...';
                     card.remove();
                     processFinalSubmit();
                 };
@@ -639,7 +636,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // PASO FINAL: Envío Real y Mensaje de Éxito
         async function processFinalSubmit() {
-            addMessage("🚀 Enviando ficha técnica a nuestro departamento técnico...", 'user');
+            addMessage("Enviando solicitud...", 'user');
             await showTyping(1000);
 
             // --- PERSISTENCIA: GUARDAR LEAD EN NUESTRO BACKEND LOCAL ---
@@ -657,16 +654,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 ubicacion: wizardData.ubicacion
             };
 
+            // Guardar siempre en localStorage como red de seguridad
+            try {
+                const stored = JSON.parse(localStorage.getItem('tef_leads') || '[]');
+                stored.push({ ...leadData, timestamp: new Date().toISOString() });
+                localStorage.setItem('tef_leads', JSON.stringify(stored));
+            } catch (_) {}
+
             fetch('/api/leads', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'x-api-secret': 'tef-local-secret'
                 },
                 body: JSON.stringify(leadData)
             })
-            .then(response => response.json())
-            .then(data => console.log('✅ Lead de presupuesto registrado localmente:', data))
-            .catch(err => console.error('❌ Error al registrar lead de presupuesto:', err));
+            .then(response => {
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                return response.json();
+            })
+            .then(() => {
+                // Lead confirmado en servidor — borrar copia local para no duplicar
+                try {
+                    const stored = JSON.parse(localStorage.getItem('tef_leads') || '[]');
+                    const filtered = stored.filter(l => l.email !== leadData.email || l.timestamp !== stored[stored.length - 1]?.timestamp);
+                    localStorage.setItem('tef_leads', JSON.stringify(filtered));
+                } catch (_) {}
+            })
+            .catch(() => {
+                // Fallo silencioso: el lead ya está en localStorage, se recuperará manualmente
+            });
             // --- FIN PERSISTENCIA ---
 
             // Obtener el formulario oculto y rellenar sus campos
@@ -696,11 +713,10 @@ document.addEventListener('DOMContentLoaded', () => {
             await showTyping(800);
 
             addMessage(
-                `<span style="font-size: 1.5rem;">✅</span> <strong style="color:#10b981; font-size:1.1rem;">¡SOLICITUD ENVIADA CON ÉXITO!</strong><br><br>` +
-                `Tu código único de propuesta técnica es <strong>TEF-WIZ-${Math.floor(1000 + Math.random() * 9000)}</strong>.<br><br>` +
-                `Nuestros <strong>instaladores autorizados por el Ministerio de Industria</strong> han recibido tu Ficha de Presupuesto. ` +
-                `Un electricista o ingeniero especialista en <strong>${wizardData.servicioLabel}</strong> revisará los alcances de tu proyecto y se pondrá en contacto contigo a tu teléfono (<strong>${wizardData.telefono}</strong>) o a tu correo (<strong>${wizardData.email}</strong>) en un plazo <strong>máximo de 24 horas laborales</strong>.<br><br>` +
-                `Te facilitaremos tu presupuesto oficial de forma <strong>100% gratuita y sin compromiso</strong>. ¡Gracias por confiar en el rigor técnico de <strong>TEF</strong>!<br><br>` +
+                `<span style="font-size: 1.5rem;"></span> <strong style="color:#10b981; font-size:1.1rem;">¡Listo, ${wizardData.nombre}!</strong><br><br>` +
+                `He recibido tu solicitud para <strong>${wizardData.servicioLabel}</strong>. ` +
+                `En menos de 24 horas te mando el presupuesto a <strong>${wizardData.email}</strong> y si necesito aclarar algo te llamo al <strong>${wizardData.telefono}</strong>.<br><br>` +
+                `Sin compromiso — si tienes dudas antes, llámanos directamente.<br><br>` +
                 `<a href="index.html" class="btn-outline" style="margin-top:10px; display:inline-block; border-color:#10b981; color:#10b981;">← Volver al inicio</a>`,
                 'ai'
             );
@@ -744,45 +760,45 @@ document.addEventListener('DOMContentLoaded', () => {
         const KNOWLEDGE_BASE = {
             empresa: {
                 keywords: ['quienes', 'quien', 'tef', 'empresa', 'nosotros', 'experiencia', 'años'],
-                response: "TEF es una empresa líder en telecomunicaciones e instalaciones eléctricas con más de una década de experiencia. Somos instaladores autorizados por el Ministerio de Industria, lo que garantiza que todos nuestros trabajos cumplen con las normativas de seguridad y eficiencia energética más estrictas. Nuestra prioridad es la excelencia técnica en cada proyecto."
+                response: "Somos TEF, instaladores eléctricos y de telecomunicaciones en Madrid. Llevamos más de 11 años haciendo instalaciones en viviendas, comunidades y empresas. Trabajamos con material de primeras marcas y todos nuestros técnicos están certificados."
             },
             fibra: {
                 keywords: ['fibra', 'optica', 'internet', 'datos', 'red', 'velocidad', 'ftth', 'oficina'],
-                response: "En TEF nos especializamos en redes de Fibra Óptica (FTTH) de alto rendimiento. Diseñamos e instalamos infraestructuras robustas con baja latencia para empresas y oficinas, asegurando una conectividad ininterrumpida que potencia la productividad de su negocio."
+                response: "Montamos redes de fibra óptica y cableado estructurado para oficinas y locales. Desde el armario rack hasta cada puesto de trabajo — sin perder señal, sin improvisar. ¿Cuántos puntos necesitas cablear?"
             },
             electrica: {
                 keywords: ['electrica', 'electricidad', 'instalacion', 'cuadros', 'industriales', 'boletin', 'normativa', 'rebt', 'electricistas'],
-                response: "Como instaladores autorizados, ejecutamos instalaciones eléctricas integrales para entornos industriales y residenciales. Realizamos montajes de cuadros eléctricos, acometidas y mantenimiento siguiendo rigurosamente la normativa REBT e ITC-BT. Garantizamos máxima seguridad y optimización del consumo."
+                response: "Hacemos instalaciones eléctricas completas: cuadros eléctricos, cambio de cableado, boletines para dar de alta la luz, obra nueva... Todo con el boletín del instalador autorizado para que no tengas problemas con la compañía eléctrica."
             },
             antenas: {
                 keywords: ['antenas', 'tdt', 'television', 'parabolica', 'satelite', 'señal', 'comunidad', 'vecinos'],
-                response: "Ofrecemos un servicio especializado en instalación y mantenimiento de sistemas de recepción de TV, tanto terrestre (TDT) como vía satélite (parabólicas). Utilizamos tecnología de precisión para asegurar una señal óptima en comunidades de propietarios y viviendas unifamiliares."
+                response: "Instalamos y reparamos antenas TDT y parabólicas, tanto en viviendas como en comunidades de vecinos. Si tienes mala señal o quieres poner una ICT nueva, cuéntanos y te damos precio rápido."
             },
             domotica: {
                 keywords: ['domotica', 'inteligente', 'knx', 'smart', 'automatizacion', 'hogar', 'control', 'remoto'],
-                response: "Transformamos espacios mediante soluciones de domótica avanzada, integradas principalmente bajo el estándar profesional KNX. Podrá controlar la iluminación, el clima y la seguridad de su inmueble desde cualquier lugar, aportando confort y revalorizando su propiedad."
+                response: "Instalamos domótica KNX y sistemas de hogar inteligente: controlar la luz, la calefacción y las persianas desde el móvil o con voz. Es más sencillo de lo que parece y el ahorro en electricidad se nota. ¿Tienes ya algo instalado o sería desde cero?"
             },
             seguridad: {
-                keywords: ['seguridad', 'camaras', 'cctv', 'videovigilancia', 'alarma', 'videoporteros', 'portero', 'proteccion', 'vigo', 'vigilancia'],
-                response: "Nuestras soluciones de Seguridad Inteligente incluyen instalación de cámaras de alta resolución (4K) con visión nocturna, sistemas de videovigilancia CCTV, alarmas conectadas y videoporteros IP de alta gama. Todo gestionable en tiempo real desde su dispositivo móvil para su total tranquilidad."
+                keywords: ['seguridad', 'camaras', 'cctv', 'videovigilancia', 'alarma', 'videoporteros', 'portero', 'proteccion', 'madrid', 'vigilancia'],
+                response: "Ponemos cámaras Dahua 4K, videoporteros Fermax/Legrand y sistemas de alarma conectada al móvil. Todo configurado para que veas tu casa o local en tiempo real desde cualquier sitio. ¿Es para una vivienda, comunidad o local comercial?"
             },
             obra_nueva: {
                 keywords: ['obra', 'nueva', 'reforma', 'construccion', 'proyectos', 'promotora', 'constructora'],
-                response: "Colaboramos con constructoras y particulares en la ejecución de instalaciones eléctricas para obra nueva y grandes reformas. Nos encargamos de todo el proceso técnico, desde el proyecto inicial y el boletín eléctrico hasta la iluminación LED arquitectónica."
+                response: "Trabajamos con promotoras y particulares en obra nueva y reformas: proyecto eléctrico completo, instalación de red de datos, antenas y domótica. Nos encargamos de toda la parte técnica para que el arquitecto no tenga que preocuparse."
             },
             contacto: {
                 keywords: ['telefono', 'contacto', 'llamar', 'email', 'correo', 'donde', 'ubicacion', 'horario', 'emergencias', 'urgencia'],
-                response: "Puede contactar con nuestra central en el teléfono +34 600 000 000 o enviarnos un email a info@tef-instalaciones.es. Estamos ubicados en España y atendemos de Lunes a Viernes de 8:00 a 18:00. Para situaciones críticas, ofrecemos servicio de Urgencias 24/7."
+                response: "Puedes llamarnos o mandarnos un mensaje — atendemos de lunes a viernes de 8:00 a 18:00. Para urgencias también tenemos cobertura. ¿Prefieres que te llamemos nosotros? Deja aquí tu número."
             },
             presupuesto: {
                 keywords: ['presupuesto', 'precio', 'coste', 'cuanto', 'tarifa', 'cotizacion'],
-                response: "Estaremos encantados de facilitarle un presupuesto personalizado y detallado sin compromiso alguno. Para poder asesorarle con precisión, ¿podría indicarme qué tipo de instalación o servicio (Seguridad, Eléctrica, Fibra Óptica, etc.) necesita cubrir?"
+                response: "El presupuesto es gratis y sin compromiso. Cuéntame qué necesitas y te lo preparo hoy mismo — ¿eléctrica, fibra, cámaras o domótica?"
             }
         };
 
         function startChatSequence() {
             setTimeout(() => {
-                addFloatingMessage("¡Bienvenido a TEF! Soy su Asistente Virtual. Estamos aquí para garantizar la excelencia técnica en su próximo proyecto. ¿En qué área puedo asesorarle hoy?", 'ai');
+                addFloatingMessage("¡Hola! Soy Carlos de TEF. ¿En qué te puedo ayudar?", 'ai');
                 setTimeout(showFloatingQuickOptions, 600);
             }, 500);
         }
@@ -805,17 +821,17 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const title = document.createElement('div');
             title.classList.add('quick-options-title');
-            title.innerHTML = '🔍 Especialidades Destacadas';
+            title.innerHTML = '¿Qué te interesa?';
             card.appendChild(title);
 
             const grid = document.createElement('div');
             grid.classList.add('quick-options-grid');
             
             const specialties = [
-                { id: 'seguridad', label: '🔒 Seguridad' },
-                { id: 'fibra', label: '📡 Fibra' },
-                { id: 'electrica', label: '⚡ Electricidad' },
-                { id: 'domotica', label: '🏠 Domótica' }
+                { id: 'seguridad', label: 'Seguridad' },
+                { id: 'fibra', label: 'Fibra' },
+                { id: 'electrica', label: 'Electricidad' },
+                { id: 'domotica', label: 'Domótica' }
             ];
 
             specialties.forEach(spec => {
@@ -823,7 +839,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.classList.add('quick-btn');
                 btn.textContent = spec.label;
                 btn.onclick = () => {
-                    const userQuery = spec.label.split(' ').pop();
+                    const userQuery = spec.label;
                     addFloatingMessage(userQuery, 'user');
                     handleFloatingAIResponse(spec.id);
                     card.remove();
@@ -855,10 +871,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (!foundResponse) {
-                if (lowerMsg.includes('hola') || lowerMsg.includes('buenos dias')) {
-                    foundResponse = "Buen día. Como representante técnico de TEF, estoy a su entera disposición. ¿Cómo podemos colaborar en su proyecto hoy?";
+                if (lowerMsg.includes('hola') || lowerMsg.includes('buenos') || lowerMsg.includes('buenas')) {
+                    foundResponse = "¡Hola! ¿En qué te puedo ayudar hoy?";
                 } else {
-                    foundResponse = "Entiendo su consulta. Para poder brindarle la asesoría experta que caracteriza a TEF, ¿podría especificar si su interés reside en temas de seguridad, fibra o instalaciones eléctricas?";
+                    foundResponse = "No he pillado bien lo que necesitas. ¿Es algo de eléctrica, fibra, cámaras o domótica?";
                 }
             }
 

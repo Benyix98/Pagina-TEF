@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -22,7 +22,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    
+    <!-- IMPORTANTE: Configura el dominio permitido en staticforms.dev para proteger esta key -->
+    <meta name="sf-key" content="sf_b67756297449d5ae7fd68fa6">
+
     <style>
         :root {
             --chat-bg: #030303;
@@ -39,6 +41,7 @@
             background: var(--chat-bg);
             color: var(--chat-text);
             font-family: 'Inter', sans-serif;
+            font-weight: 300;
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -69,7 +72,7 @@
             gap: 12px;
             text-decoration: none;
             color: white;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             font-weight: 800;
             font-size: 1.1rem;
             letter-spacing: 0.02em;
@@ -298,7 +301,7 @@
         }
 
         .summary-title {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             font-size: 1.05rem;
             font-weight: 700;
             color: white;
@@ -337,7 +340,7 @@
             border: none;
             padding: 14px 20px;
             border-radius: 12px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             font-weight: 700;
             font-size: 1rem;
             cursor: pointer;
@@ -559,7 +562,7 @@
             <span>TEF | Asistente de Presupuestos</span>
         </a>
         <div class="trust-badges-inline">
-            <span class="trust-badge-inline" title="Empresa inscrita en el registro del Ministerio de Industria">🏅 Instalador Eléctrico Autorizado</span>
+            <span class="trust-badge-inline" title="Empresa inscrita en el registro del Ministerio de Industria"> Instalador Eléctrico Autorizado</span>
             <span class="trust-badge-inline" title="Elaboración sin coste y sin ningún tipo de compromiso">⏱️ Presupuesto Gratis 24h</span>
         </div>
         <div class="agent-status" aria-live="polite">
@@ -612,8 +615,10 @@
     <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
     <!-- Formulario oculto para el envío del Asistente -->
-    <form id="hidden-budget-form" action="https://api.staticforms.dev/submit" method="POST" target="_blank" style="display:none;">
-        <input type="hidden" name="apiKey" value="sf_b67756297449d5ae7fd68fa6">
+    <form id="hidden-budget-form" action="https://api.staticforms.dev/submit" method="POST" target="hidden_iframe" style="display:none;">
+        <input type="hidden" name="apiKey" id="budget-api-key">
+        <!-- Honeypot antispam -->
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
         <input type="hidden" name="subject" id="hidden-subject">
         <input type="text" name="Especialidad" id="hidden-especialidad">
         <input type="text" name="Tipo de Inmueble" id="hidden-espacio">
