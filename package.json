@@ -1,0 +1,24 @@
+{
+  "name": "pagina-tef",
+  "version": "1.0.0",
+  "description": "Sitio web profesional de TEF, especialistas en telecomunicaciones e instalaciones eléctricas.",
+  "main": "chat.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Benyix98/Pagina-TEF.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Benyix98/Pagina-TEF/issues"
+  },
+  "homepage": "https://github.com/Benyix98/Pagina-TEF#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

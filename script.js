@@ -1,517 +1,338 @@
-/**
- * TEF - Telecomunicaciones e Instalaciones Eléctricas
- * script.js - Interacciones y animaciones
- */
-
 'use strict';
 
-/* =====================================================
-   0. INTRO SPLASH SCREEN LOGIC
-   ===================================================== */
-(function initHeroIntroSlogans() {
-    const container = document.getElementById('hero-slogans-container');
-    const slogans = document.querySelectorAll('.hero-slogan');
-    const fadeElements = document.querySelectorAll('.hero-fade-element');
-    if (!container || !slogans.length) return;
+document.addEventListener('DOMContentLoaded', () => {
 
-    let currentSlogan = 0;
-    const sloganInterval = 2500; // Time per slogan (2.5 seconds in the center)
+    // =========================================================================
+    // 0. API KEY — leer desde <meta name="sf-key"> en lugar de hardcodear
+    // =========================================================================
+    const sfKey = document.querySelector('meta[name="sf-key"]')?.content || '';
+    const contactApiKey = document.getElementById('contact-api-key');
+    if (contactApiKey && sfKey) contactApiKey.value = sfKey;
 
-    function showSlogan(index) {
-        slogans.forEach(s => s.classList.remove('active', 'exit'));
-        if (slogans[index]) {
-            slogans[index].classList.add('active');
+    // =========================================================================
+    // 1. PARTICLES
+    // =========================================================================
+    const particlesContainer = document.getElementById('particles-container');
+    if (particlesContainer) {
+        const count = window.innerWidth < 768 ? 18 : 40;
+        for (let i = 0; i < count; i++) {
+            const p = document.createElement('div');
+            p.classList.add('particle');
+            p.style.left = `${Math.random() * 100}%`;
+            p.style.top = `${Math.random() * 100}%`;
+            p.style.animationDelay = `${Math.random() * 20}s`;
+            p.style.animationDuration = `${15 + Math.random() * 15}s`;
+            particlesContainer.appendChild(p);
         }
     }
 
-    function exitSlogan(index) {
-        if (slogans[index]) {
-            slogans[index].classList.remove('active');
-            slogans[index].classList.add('exit');
-        }
-    }
-
-    const startIntro = () => {
-        showSlogan(currentSlogan);
-
-        const cycle = setInterval(() => {
-            exitSlogan(currentSlogan);
-            currentSlogan++;
-
-            if (currentSlogan < slogans.length) {
-                // Introduce next slogan after a short delay
-                setTimeout(() => showSlogan(currentSlogan), 400);
-            } else {
-                clearInterval(cycle);
-                // Introduce main hero elements with smooth fade-in
-                setTimeout(revealHeroContent, 800);
-            }
-        }, sloganInterval);
-
-        function revealHeroContent() {
-            // Smoothly fade out the slogans container (preserving translate centering)
-            container.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            container.style.opacity = '0';
-            container.style.transform = 'translate(-50%, -50%) scale(0.95)';
-
-            setTimeout(() => {
-                container.style.display = 'none';
-
-                // Fade in elements smoothly with zero reflow and zero micro-cuts
-                fadeElements.forEach(el => {
-                    el.classList.add('fade-in');
-                });
-                
-                // Dispatch event when the hero content reveal starts
-                document.dispatchEvent(new CustomEvent('heroRevealStart'));
-            }, 600);
-        }
-    };
-
-    // Start immediately or on DOMContentLoaded
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => setTimeout(startIntro, 300));
-    } else {
-        setTimeout(startIntro, 300);
-    }
-})();
-
-
-
-/* =====================================================
-   1. PARTICLE SYSTEM
-   ===================================================== */
-(function initParticles() {
-    const container = document.getElementById('particles-container');
-    if (!container) return;
-
-    const particleCount = 50;
-    const fragment = document.createDocumentFragment();
-
-    for (let i = 0; i < particleCount; i++) {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        p.style.cssText = `
-            left: ${Math.random() * 100}%;
-            top: ${Math.random() * 100}%;
-            animation-delay: ${Math.random() * 20}s;
-            animation-duration: ${15 + Math.random() * 10}s;
-        `;
-        fragment.appendChild(p);
-    }
-
-    container.appendChild(fragment);
-})();
-
-
-/* =====================================================
-   2. NAVBAR STICKY SCROLL
-   ===================================================== */
-(function initNavbar() {
+    // =========================================================================
+    // 2. NAVBAR SCROLL
+    // =========================================================================
     const navbar = document.getElementById('navbar');
-    if (!navbar) return;
-
-    const handleScroll = debounce(() => {
-        if (window.scrollY > 60) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    }, 10);
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-})();
-
-
-/* =====================================================
-   3. MOBILE MENU
-   ===================================================== */
-(function initMobileMenu() {
-    const toggle = document.getElementById('mobile-menu-toggle');
-    const overlay = document.getElementById('nav-menu-inline');
-    const links = document.querySelectorAll('.mobile-nav-link');
-    if (!toggle || !overlay) return;
-
-    function openMenu() {
-        toggle.classList.add('active');
-        overlay.classList.add('open');
-        overlay.setAttribute('aria-hidden', 'false');
-        toggle.setAttribute('aria-expanded', 'true');
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        }, { passive: true });
     }
 
-    // Close menu when any valid link is clicked
-    const allMenuLinks = document.querySelectorAll('.mobile-nav-link:not(.submenu-toggle), .submenu-link');
-    allMenuLinks.forEach(link => {
-        link.addEventListener('click', closeMenu);
-    });
-
-    // Toggle menu open/close
-    toggle.addEventListener('click', () => {
-        if (overlay.classList.contains('open')) {
-            closeMenu();
-        } else {
-            openMenu();
-        }
-    });
-
-    // Submenu Toggle Logic
+    // =========================================================================
+    // 3. HAMBURGER MENU
+    // =========================================================================
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const navMenuInline = document.getElementById('nav-menu-inline');
     const submenuToggle = document.getElementById('submenu-toggle');
-    const submenu = document.getElementById('servicios-submenu');
+    const serviciosSubmenu = document.getElementById('servicios-submenu');
 
-    if (submenuToggle && submenu) {
+    if (menuToggle && navMenuInline) {
+        menuToggle.addEventListener('click', () => {
+            const isOpen = navMenuInline.classList.toggle('open');
+            menuToggle.classList.toggle('active', isOpen);
+            menuToggle.setAttribute('aria-expanded', isOpen);
+            navMenuInline.setAttribute('aria-hidden', !isOpen);
+
+            if (!isOpen && serviciosSubmenu) {
+                serviciosSubmenu.classList.remove('open');
+                submenuToggle?.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navbar.contains(e.target)) {
+                navMenuInline.classList.remove('open');
+                menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                navMenuInline.setAttribute('aria-hidden', 'true');
+                serviciosSubmenu?.classList.remove('open');
+            }
+        });
+    }
+
+    if (submenuToggle && serviciosSubmenu) {
         submenuToggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            const isOpen = submenu.classList.contains('open');
-            
-            if (isOpen) {
-                submenu.classList.remove('open');
-                submenuToggle.setAttribute('aria-expanded', 'false');
-            } else {
-                submenu.classList.add('open');
-                submenuToggle.setAttribute('aria-expanded', 'true');
-            }
+            e.stopPropagation();
+            const isOpen = serviciosSubmenu.classList.toggle('open');
+            submenuToggle.setAttribute('aria-expanded', isOpen);
         });
     }
 
-    function closeMenu() {
-        toggle.classList.remove('active');
-        overlay.classList.remove('open');
-        overlay.setAttribute('aria-hidden', 'true');
-        toggle.setAttribute('aria-expanded', 'false');
-        
-        // Ensure submenu closes too
-        if (submenu) {
-            submenu.classList.remove('open');
-            if(submenuToggle) submenuToggle.setAttribute('aria-expanded', 'false');
-        }
-    }
+    // =========================================================================
+    // 4. HERO SLOGANS SLIDER
+    // =========================================================================
+    const slogans = document.querySelectorAll('.hero-slogan');
+    const heroFadeElements = document.querySelectorAll('.hero-fade-element');
 
-    // Close on ESC
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && overlay.classList.contains('open')) closeMenu();
-    });
-})();
+    if (slogans.length > 0) {
+        let currentSlogan = 0;
+        const SLOGAN_DURATION = 2200;
+        const TOTAL_SLOGAN_TIME = slogans.length * SLOGAN_DURATION;
 
-
-/* =====================================================
-   4. SMOOTH SCROLL
-   ===================================================== */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-
-        const target = document.querySelector(targetId);
-        if (!target) return;
-
-        e.preventDefault();
-
-        const navHeight = document.getElementById('navbar')?.offsetHeight || 80;
-        const targetPos = target.getBoundingClientRect().top + window.scrollY - navHeight;
-
-        window.scrollTo({
-            top: targetPos,
-            behavior: 'smooth'
-        });
-    });
-});
-
-
-/* =====================================================
-   5. SCROLL REVEAL (Intersection Observer)
-   ===================================================== */
-(function initScrollReveal() {
-    const elements = document.querySelectorAll('.reveal');
-    if (!elements.length) return;
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, idx) => {
-            if (entry.isIntersecting) {
-                // Stagger effect
-                const delay = (entry.target.dataset.delay || 0) * 100;
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, delay);
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -80px 0px'
-    });
-
-    // Add stagger data-delay to sibling cards
-    const grids = document.querySelectorAll('.services-grid, .projects-grid, .testimonials-grid, .contact-info');
-    grids.forEach(grid => {
-        const children = grid.querySelectorAll('.reveal');
-        children.forEach((child, i) => {
-            child.dataset.delay = i;
-        });
-    });
-
-    elements.forEach(el => observer.observe(el));
-})();
-
-
-/* =====================================================
-   6. ANIMATED COUNTERS
-   ===================================================== */
-(function initCounters() {
-    const stats = document.querySelectorAll('.stat-number');
-    if (!stats.length) return;
-
-    function animateCounter(el) {
-        const target = parseInt(el.dataset.target, 10);
-        const duration = 2000;
-        const start = performance.now();
-
-        function update(currentTime) {
-            const elapsed = currentTime - start;
-            const progress = Math.min(elapsed / duration, 1);
-            // Ease out cubic
-            const eased = 1 - Math.pow(1 - progress, 3);
-            el.textContent = Math.round(eased * target);
-
-            if (progress < 1) {
-                requestAnimationFrame(update);
-            } else {
-                el.textContent = target;
-            }
-        }
-
-        requestAnimationFrame(update);
-    }
-
-    const startCounters = () => {
-        stats.forEach(stat => animateCounter(stat));
-    };
-
-    const heroStats = document.querySelector('.hero-stats');
-    const introContainer = document.getElementById('hero-slogans-container');
-
-    if (introContainer && heroStats) {
-        let triggered = false;
-        const triggerOnce = () => {
-            if (triggered) return;
-            triggered = true;
-            startCounters();
-        };
-
-        // Escuchar cuando comience la transición de opacidad del elemento hero-stats
-        heroStats.addEventListener('transitionstart', (e) => {
-            if (e.propertyName === 'opacity') {
-                triggerOnce();
-            }
-        }, { once: true });
-
-        // Fallback de seguridad: 700ms (retraso del delay-4) tras el inicio del revelado
-        document.addEventListener('heroRevealStart', () => {
-            setTimeout(triggerOnce, 700);
-        }, { once: true });
-    } else {
-        // Lógica por defecto (Intersection Observer) para otras páginas o si no hay intro
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounter(entry.target);
-                    observer.unobserve(entry.target);
-                }
+        function showSlogan(index) {
+            slogans.forEach((s, i) => {
+                s.classList.remove('active', 'exit');
+                if (i === index) s.classList.add('active');
+                else if (i === (index - 1 + slogans.length) % slogans.length) s.classList.add('exit');
             });
-        }, { threshold: 0.5 });
-
-        stats.forEach(stat => observer.observe(stat));
-    }
-})();
-
-
-/* =====================================================
-   7. FLIP CARDS (tap/click on mobile)
-   ===================================================== */
-(function initFlipCards() {
-    const cards = document.querySelectorAll('.service-card-flip');
-    if (!cards.length) return;
-
-    let isTouchDevice = false;
-
-    window.addEventListener('touchstart', () => {
-        isTouchDevice = true;
-    }, { once: true, passive: true });
-
-    cards.forEach(card => {
-        card.addEventListener('click', () => {
-            if (isTouchDevice) {
-                card.classList.toggle('flipped');
-            }
-        });
-
-        // Keyboard accessibility
-        card.setAttribute('tabindex', '0');
-        card.setAttribute('role', 'button');
-        card.setAttribute('aria-label', 'Ver detalles del servicio');
-
-        card.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                card.classList.toggle('flipped');
-            }
-        });
-    });
-})();
-
-
-/* =====================================================
-   8. CONTACT FORM HANDLER
-   ===================================================== */
-(function initContactForm() {
-    const form = document.getElementById('contact-form');
-    const success = document.getElementById('form-success');
-    const submitBtn = document.getElementById('form-submit-btn');
-    if (!form) return;
-
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        // Basic validation
-        const name = form.querySelector('#name').value.trim();
-        const email = form.querySelector('#email').value.trim();
-        const message = form.querySelector('#message').value.trim();
-
-        if (!name || !email || !message) {
-            shakeForm(form);
-            return;
         }
 
-        if (!isValidEmail(email)) {
-            form.querySelector('#email').focus();
-            form.querySelector('#email').style.borderColor = '#EF4444';
-            setTimeout(() => {
-                form.querySelector('#email').style.borderColor = '';
-            }, 2000);
-            return;
-        }
-
-        // Send real email via native form submission (targeting the hidden iframe to bypass CORS/Adblockers)
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Enviando...';
-
-        // Set subject dynamically
-        const subjectInput = form.querySelector('#contact-form-subject');
-        if (subjectInput) {
-            subjectInput.value = `Nueva Consulta Web TEF: ${name}`;
-        }
-
-        // Submit form natively (runs silently inside the iframe)
-        form.submit();
-        console.log("Formulario de contacto enviado silenciosamente vía iframe.");
-
-        // Clear and show success after a short delay (1 second) to let browser process submission
-        setTimeout(() => {
-            form.reset();
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = 'Enviar Solicitud <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>';
-
-            if (success) {
-                success.classList.add('visible');
-                success.setAttribute('aria-hidden', 'false');
-                setTimeout(() => {
-                    success.classList.remove('visible');
-                    success.setAttribute('aria-hidden', 'true');
-                }, 5000);
-            }
-        }, 1000);
-    });
-
-    // Clear red border on fix
-    form.querySelectorAll('.form-input').forEach(input => {
-        input.addEventListener('input', () => {
-            input.style.borderColor = '';
-        });
-    });
-})();
-
-
-/* =====================================================
-   9. NAVBAR ACTIVE LINK HIGHLIGHT
-   ===================================================== */
-(function initActiveNav() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-    if (!sections.length || !navLinks.length) return;
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
-                navLinks.forEach(link => {
-                    link.style.color = '';
-                    if (link.getAttribute('href') === `#${id}`) {
-                        link.style.color = 'var(--primary-400)';
+        showSlogan(0);
+        const sloganInterval = setInterval(() => {
+            currentSlogan++;
+            if (currentSlogan >= slogans.length) {
+                clearInterval(sloganInterval);
+                // Salida suave del último slogan
+                slogans.forEach(s => {
+                    if (s.classList.contains('active')) {
+                        s.classList.remove('active');
+                        s.classList.add('exit');
+                    } else {
+                        s.classList.remove('active', 'exit');
                     }
                 });
+                // Revelar hero tras completar la transición de salida
+                setTimeout(() => {
+                    slogans.forEach(s => { s.style.display = 'none'; });
+                    heroFadeElements.forEach(el => el.classList.add('fade-in'));
+                }, 600);
+                return;
+            }
+            showSlogan(currentSlogan);
+        }, SLOGAN_DURATION);
+    } else {
+        heroFadeElements.forEach(el => el.classList.add('fade-in'));
+    }
+
+    // =========================================================================
+    // 5. SCROLL REVEAL
+    // =========================================================================
+    const revealElements = document.querySelectorAll('.reveal');
+    if (revealElements.length > 0) {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        revealElements.forEach(el => revealObserver.observe(el));
+    }
+
+    // =========================================================================
+    // 6. CONTADORES DE ESTADÍSTICAS
+    // =========================================================================
+    const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+    if (statNumbers.length > 0) {
+        const countObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                const target = parseInt(el.dataset.target, 10);
+                const duration = 1800;
+                const start = performance.now();
+
+                function update(now) {
+                    const elapsed = now - start;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    el.textContent = Math.floor(eased * target);
+                    if (progress < 1) requestAnimationFrame(update);
+                    else el.textContent = target;
+                }
+
+                requestAnimationFrame(update);
+                countObserver.unobserve(el);
+            });
+        }, { threshold: 0.5 });
+        statNumbers.forEach(el => countObserver.observe(el));
+    }
+
+    // =========================================================================
+    // 7. FORMULARIO DE CONTACTO
+    // =========================================================================
+    const contactForm = document.getElementById('contact-form');
+    const formSuccess = document.getElementById('form-success');
+    const formSubmitBtn = document.getElementById('form-submit-btn');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Honeypot: si el campo _honey tiene valor, es un bot — ignorar silenciosamente
+            const honey = contactForm.querySelector('input[name="_honey"]')?.value;
+            if (honey) return;
+
+            const name = contactForm.querySelector('#name')?.value.trim();
+            const message = contactForm.querySelector('#message')?.value.trim();
+            if (!name || !message) return;
+
+            formSubmitBtn.disabled = true;
+            formSubmitBtn.textContent = 'Enviando...';
+
+            const subjectEl = document.getElementById('contact-form-subject');
+            const serviceHidden = document.getElementById('service-hidden');
+            if (subjectEl && serviceHidden?.value) {
+                subjectEl.value = `Consulta Web TEF — ${serviceHidden.value}`;
+            }
+
+            try {
+                const formData = new FormData(contactForm);
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { Accept: 'application/json' }
+                });
+
+                if (response.ok || response.redirected) {
+                    contactForm.reset();
+                    if (formSuccess) {
+                        formSuccess.style.display = 'flex';
+                        formSuccess.removeAttribute('aria-hidden');
+                    }
+                } else {
+                    throw new Error('server error');
+                }
+            } catch {
+                // Fallback nativo via iframe (inmune a CORS y AdBlockers)
+                contactForm.target = 'contact_hidden_iframe';
+                contactForm.submit();
+                if (formSuccess) {
+                    formSuccess.style.display = 'flex';
+                    formSuccess.removeAttribute('aria-hidden');
+                }
+            } finally {
+                formSubmitBtn.disabled = false;
+                formSubmitBtn.innerHTML = 'Enviar solicitud <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>';
             }
         });
-    }, {
-        threshold: 0.4,
-        rootMargin: '-80px 0px 0px 0px'
+    }
+
+    // =========================================================================
+    // CTA FINAL — animación de palabras izquierda a derecha
+    // =========================================================================
+    const ctaFinalSection = document.querySelector('.cta-final');
+    const ctaWords        = document.querySelectorAll('.cta-w');
+    const ctaEyebrow      = document.getElementById('ctaEyebrow');
+    const ctaFinalSub     = document.getElementById('ctaFinalSub');
+    const ctaFinalBtn     = document.getElementById('ctaFinalBtnWrap');
+    let ctaStarted = false;
+
+    function runCtaAnimation() {
+        if (ctaStarted) return;
+        ctaStarted = true;
+
+        setTimeout(() => ctaEyebrow?.classList.add('cta-lit'), 200);
+
+        ctaWords.forEach((w, i) => {
+            setTimeout(() => w.classList.add('cta-lit'), 500 + i * 320);
+        });
+
+        const endDelay = 500 + (ctaWords.length - 1) * 320 + 500;
+        setTimeout(() => ctaFinalSub?.classList.add('cta-lit'), endDelay);
+        setTimeout(() => ctaFinalBtn?.classList.add('cta-lit'), endDelay + 300);
+    }
+
+    if (ctaFinalSection) {
+        const ctaObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) runCtaAnimation();
+        }, { threshold: 0.35 });
+        ctaObserver.observe(ctaFinalSection);
+    }
+
+    // Chips de servicio en el formulario de contacto
+    document.querySelectorAll('.service-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+            document.querySelectorAll('.service-chip').forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            const hidden = document.getElementById('service-hidden');
+            if (hidden) hidden.value = chip.dataset.value || '';
+        });
     });
 
-    sections.forEach(section => observer.observe(section));
-})();
+    // =========================================================================
+    // 8. SMOOTH SCROLL para links internos
+    // =========================================================================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+            const target = document.querySelector(anchor.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                navMenuInline?.classList.remove('open');
+                menuToggle?.classList.remove('active');
+            }
+        });
+    });
 
+    // =========================================================================
+    // 9. TIMELINE + CTA ROTATOR — animación secuencial
+    // =========================================================================
+    const tlItems   = ['tl1','tl2','tl3','tl4','tl5'];
+    const tlFill    = document.getElementById('timelineFill');
+    const ctaSection = document.getElementById('ctaSection');
 
-/* =====================================================
-   10. PARALLAX SUBTLE BACKGROUND
-   ===================================================== */
-(function initParallax() {
-    const heroVisual = document.querySelector('.hero-image');
-    if (!heroVisual) return;
+    if (tlFill) {
+        const DELAY_FIRST   = 500;
+        const DELAY_BETWEEN = 900;
 
-    window.addEventListener('scroll', debounce(() => {
-        const scrolled = window.scrollY;
-        if (scrolled < window.innerHeight) {
-            heroVisual.style.transform = `translateY(${scrolled * 0.08}px)`;
-        }
-    }, 5), { passive: true });
-})();
+        // Activar línea de color
+        setTimeout(() => { tlFill.style.height = '100%'; }, 300);
 
+        // Aparecer items uno a uno
+        tlItems.forEach((id, i) => {
+            setTimeout(() => {
+                const el = document.getElementById(id);
+                if (el) el.classList.add('tl-visible');
+            }, DELAY_FIRST + i * DELAY_BETWEEN);
+        });
 
-/* =====================================================
-   UTILITY FUNCTIONS
-   ===================================================== */
-function debounce(func, wait) {
-    let timeout;
-    return function (...args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), wait);
-    };
-}
+        // Aparecer sección CTA tras el último item
+        const ctaDelay = DELAY_FIRST + (tlItems.length - 1) * DELAY_BETWEEN + 1000;
+        setTimeout(() => {
+            if (ctaSection) {
+                ctaSection.classList.add('cta-visible');
+                startCtaRotator();
+            }
+        }, ctaDelay);
+    }
 
-function isValidEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
+    function startCtaRotator() {
+        const rotatorItems = document.querySelectorAll('.cta-rotator-item');
+        const dots         = document.querySelectorAll('.cta-dot');
+        if (rotatorItems.length < 2) return;
 
-function shakeForm(form) {
-    form.style.animation = 'none';
-    form.offsetHeight; // reflow
-    form.style.animation = 'shake 0.5s ease';
-    setTimeout(() => { form.style.animation = ''; }, 500);
-}
+        let currentCta = 0;
+        setInterval(() => {
+            const prev = rotatorItems[currentCta];
+            prev.classList.remove('is-active');
+            prev.classList.add('is-leaving');
+            dots[currentCta].classList.remove('active');
+            setTimeout(() => prev.classList.remove('is-leaving'), 620);
 
-// Inject shake keyframe
-const style = document.createElement('style');
-style.textContent = `
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    20%       { transform: translateX(-8px); }
-    40%       { transform: translateX(8px); }
-    60%       { transform: translateX(-6px); }
-    80%       { transform: translateX(6px); }
-}
-`;
-document.head.appendChild(style);
+            currentCta = (currentCta + 1) % rotatorItems.length;
+            rotatorItems[currentCta].classList.add('is-active');
+            dots[currentCta].classList.add('active');
+        }, 3500);
+    }
 
-
-/* =====================================================
-   INIT COMPLETE
-   ===================================================== */
-console.log('%c⚡ TEF - Telecomunicaciones e Instalaciones Eléctricas', 'color:#3B82F6;font-size:14px;font-weight:bold;');
+});

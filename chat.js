@@ -29,6 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
             superficieLabel: '',
             detalles: '',
             detallesLabel: '',
+            marca: '',
+            marcaLabel: '',
+            plazo: '',
+            plazoLabel: '',
+            ubicacion: '',
             nombre: '',
             telefono: '',
             email: ''
@@ -328,12 +333,62 @@ document.addEventListener('DOMContentLoaded', () => {
                 const btn = document.createElement('button');
                 btn.classList.add('quick-btn');
                 btn.innerHTML = `<i>⚙️</i> <div><strong>${item.label}</strong><br><span style="font-size:0.72rem; opacity:0.6; font-weight:400;">${item.desc}</span></div>`;
+                 btn.onclick = () => {
+                     wizardData.detalles = item.id;
+                     wizardData.detallesLabel = item.label;
+                     addMessage(item.label, 'user');
+                     card.remove();
+                     goToBrandStep();
+                 };
+                grid.appendChild(btn);
+            });
+
+            card.appendChild(grid);
+            chatMessages.appendChild(card);
+            scrollToBottom();
+        }
+
+        // --- NUEVOS PASOS ENRIQUECIDOS PARA MEJORAR EL PRESUPUESTO ---
+        async function goToBrandStep() {
+            await showTyping(1000);
+            addMessage(
+                "Para ajustar el presupuesto con el material ideal, ¿tienes preferencia por alguna **marca de productos** en específico entre las que trabajamos?",
+                'ai'
+            );
+            await showTyping(400);
+            showBrandGrid();
+        }
+
+        function showBrandGrid() {
+            const card = document.createElement('div');
+            card.classList.add('quick-options-card');
+            
+            const title = document.createElement('div');
+            title.classList.add('quick-options-title');
+            title.innerHTML = '🏷️ Seleccione Marca Preferida';
+            card.appendChild(title);
+
+            const grid = document.createElement('div');
+            grid.classList.add('quick-options-grid');
+
+            const brands = [
+                { id: 'televes', label: '📡 Televés', desc: 'Líder en antenas y telecomunicaciones' },
+                { id: 'fermax', label: '📞 Fermax', desc: 'Videoporteros e intercomunicación de alta gama' },
+                { id: 'tegui', label: '🔌 Tegui / Legrand', desc: 'Material eléctrico y telefonillos residenciales' },
+                { id: 'knx', label: '🏠 KNX / Domótica Estándar', desc: 'Sistemas inteligentes domóticos' },
+                { id: 'sin_preferencia', label: '⚖️ Sin preferencia', desc: 'La mejor opción técnica recomendada por TEF' }
+            ];
+
+            brands.forEach(item => {
+                const btn = document.createElement('button');
+                btn.classList.add('quick-btn');
+                btn.innerHTML = `<i>${item.label.split(' ')[0]}</i> <div><strong>${item.label.substring(2)}</strong><br><span style="font-size:0.72rem; opacity:0.6; font-weight:400;">${item.desc}</span></div>`;
                 btn.onclick = () => {
-                    wizardData.detalles = item.id;
-                    wizardData.detallesLabel = item.label;
+                    wizardData.marca = item.id;
+                    wizardData.marcaLabel = item.label.substring(2);
                     addMessage(item.label, 'user');
                     card.remove();
-                    goToStep3();
+                    goToTimelineStep();
                 };
                 grid.appendChild(btn);
             });
@@ -342,6 +397,67 @@ document.addEventListener('DOMContentLoaded', () => {
             chatMessages.appendChild(card);
             scrollToBottom();
         }
+
+        async function goToTimelineStep() {
+            await showTyping(1000);
+            addMessage(
+                "Excelente elección. ¿Cuál es el **plazo o urgencia** estimado para comenzar con la instalación?",
+                'ai'
+            );
+            await showTyping(400);
+            showTimelineGrid();
+        }
+
+        function showTimelineGrid() {
+            const card = document.createElement('div');
+            card.classList.add('quick-options-card');
+            
+            const title = document.createElement('div');
+            title.classList.add('quick-options-title');
+            title.innerHTML = '📅 Seleccione Plazo Estimado';
+            card.appendChild(title);
+
+            const grid = document.createElement('div');
+            grid.classList.add('quick-options-grid');
+
+            const timelines = [
+                { id: 'urgente', label: '⚡ Inmediato (menos de 15 días)', desc: 'Requiere planificación y prioridad técnica' },
+                { id: 'medio', label: '📅 Próximo mes', desc: 'Instalación planificada estándar' },
+                { id: 'largo', label: '🗓️ Planificación (+3 meses)', desc: 'Fase de estudio y presupuesto previo' }
+            ];
+
+            timelines.forEach(item => {
+                const btn = document.createElement('button');
+                btn.classList.add('quick-btn');
+                btn.innerHTML = `<i>${item.label.split(' ')[0]}</i> <div><strong>${item.label.substring(2)}</strong><br><span style="font-size:0.72rem; opacity:0.6; font-weight:400;">${item.desc}</span></div>`;
+                btn.onclick = () => {
+                    wizardData.plazo = item.id;
+                    wizardData.plazoLabel = item.label.substring(2);
+                    addMessage(item.label, 'user');
+                    card.remove();
+                    goToLocationStep();
+                };
+                grid.appendChild(btn);
+            });
+
+            card.appendChild(grid);
+            chatMessages.appendChild(card);
+            scrollToBottom();
+        }
+
+        async function goToLocationStep() {
+            await showTyping(1000);
+            addMessage(
+                "Entendido. Para calcular adecuadamente la logística de los vehículos técnicos, ¿en qué **municipio o localidad** se ubica el proyecto?",
+                'ai'
+            );
+            showInputBlock('text', 'Ej: Vigo, Redondela, Pontevedra...', (val) => {
+                wizardData.ubicacion = val;
+                addMessage(val, 'user');
+                goToStep3();
+            });
+        }
+        // --- FIN NUEVOS PASOS ---
 
         // PASO 3: Datos de Contacto (Secuenciales e Interactivos)
         async function goToStep3() {
@@ -479,6 +595,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="summary-value">${wizardData.detallesLabel}</span>
                 </div>
                 <div class="summary-item">
+                    <span class="summary-label">Marca Preferida:</span>
+                    <span class="summary-value">${wizardData.marcaLabel}</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Ubicación:</span>
+                    <span class="summary-value">${wizardData.ubicacion}</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Plazo Estimado:</span>
+                    <span class="summary-value">${wizardData.plazoLabel}</span>
+                </div>
+                <div class="summary-item">
                     <span class="summary-label">Cliente:</span>
                     <span class="summary-value">${wizardData.nombre}</span>
                 </div>
@@ -514,6 +642,33 @@ document.addEventListener('DOMContentLoaded', () => {
             addMessage("🚀 Enviando ficha técnica a nuestro departamento técnico...", 'user');
             await showTyping(1000);
 
+            // --- PERSISTENCIA: GUARDAR LEAD EN NUESTRO BACKEND LOCAL ---
+            const leadData = {
+                nombre: wizardData.nombre,
+                email: wizardData.email,
+                telefono: wizardData.telefono,
+                origen: 'presupuesto',
+                especialidad: wizardData.servicioLabel,
+                edificacion: wizardData.espacioLabel,
+                superficie: wizardData.superficieLabel || "No aplica",
+                detalles: wizardData.detallesLabel,
+                marcaPreferida: wizardData.marcaLabel,
+                plazoEstimado: wizardData.plazoLabel,
+                ubicacion: wizardData.ubicacion
+            };
+
+            fetch('/api/leads', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(leadData)
+            })
+            .then(response => response.json())
+            .then(data => console.log('✅ Lead de presupuesto registrado localmente:', data))
+            .catch(err => console.error('❌ Error al registrar lead de presupuesto:', err));
+            // --- FIN PERSISTENCIA ---
+
             // Obtener el formulario oculto y rellenar sus campos
             const hiddenForm = document.getElementById('hidden-budget-form');
             if (hiddenForm) {
@@ -522,6 +677,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('hidden-espacio').value = wizardData.espacioLabel;
                 document.getElementById('hidden-superficie').value = wizardData.superficieLabel || "No aplica (Comunidad)";
                 document.getElementById('hidden-detalles').value = wizardData.detallesLabel;
+                document.getElementById('hidden-ubicacion').value = wizardData.ubicacion;
+                document.getElementById('hidden-plazo').value = wizardData.plazoLabel;
+                document.getElementById('hidden-marca').value = wizardData.marcaLabel;
                 document.getElementById('hidden-nombre').value = wizardData.nombre;
                 document.getElementById('hidden-telefono').value = wizardData.telefono;
                 document.getElementById('hidden-email').value = wizardData.email;

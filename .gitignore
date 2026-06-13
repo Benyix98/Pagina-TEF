@@ -1,3 +1,6 @@
 *.log
 test.html
 .gemini/
+node_modules/
+leads.json
+.superpowers/
