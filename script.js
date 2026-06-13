@@ -270,6 +270,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =========================================================================
+    // FILTRO DE PROYECTOS (sección #proyectos)
+    // =========================================================================
+    const filterChips = document.querySelectorAll('.project-filter .filter-chip');
+    const workCards = document.querySelectorAll('.works-grid .work-card');
+    if (filterChips.length && workCards.length) {
+        filterChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                const filter = chip.dataset.filter;
+
+                filterChips.forEach(c => {
+                    const isActive = c === chip;
+                    c.classList.toggle('active', isActive);
+                    c.setAttribute('aria-pressed', String(isActive));
+                });
+
+                workCards.forEach(card => {
+                    const match = filter === 'todos' || card.dataset.category === filter;
+                    card.classList.toggle('is-hidden', !match);
+                    if (match) {
+                        card.classList.remove('card-in');
+                        // reflow para reiniciar la animación
+                        void card.offsetWidth;
+                        card.classList.add('card-in');
+                    }
+                });
+            });
+        });
+    }
+
+    // =========================================================================
     // 8. SMOOTH SCROLL para links internos
     // =========================================================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
