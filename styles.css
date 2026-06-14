@@ -1717,6 +1717,18 @@ button {
 }
 .work-card--hero:hover::after { opacity: 1; }
 
+/* Hero card: descripción oculta por defecto, se revela en hover */
+.work-card--hero .work-card__desc {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.work-card--hero:hover .work-card__desc {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .work-card__arrow {
     position: absolute;
     top: 16px; right: 18px;
