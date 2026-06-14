@@ -1604,7 +1604,7 @@ button {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    gap: 12px;
+    gap: 16px;
 }
 
 .work-card {
@@ -1757,13 +1757,29 @@ button {
     background: rgba(59,130,246,0.08);
 }
 
-.work-card__num {
+.work-card__num { display: none; }
+
+/* Secondary cards: acento inferior en hover (igual que hero) */
+.works-grid__secondary .work-card::after {
+    content: '';
     position: absolute;
-    top: 14px; left: 16px;
-    font-size: 0.52rem;
-    letter-spacing: 2px;
-    color: rgba(255,255,255,0.18);
-    font-weight: 500;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--primary-500), var(--primary-700), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+.works-grid__secondary .work-card:hover::after { opacity: 1; }
+
+/* Tags en cards secundarias: ocultas por defecto, visibles en hover */
+.works-grid__secondary .work-card .work-card__tags {
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.works-grid__secondary .work-card:hover .work-card__tags {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 @media (max-width: 768px) {
