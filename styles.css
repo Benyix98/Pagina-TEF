@@ -1717,6 +1717,15 @@ button {
 }
 .work-card--hero:hover::after { opacity: 1; }
 
+/* Cuando la hero card está oculta por el filtro */
+.works-grid--no-hero {
+    grid-template-columns: 1fr;
+}
+
+.works-grid--no-hero .works-grid__secondary {
+    grid-template-columns: 1fr 1fr;
+}
+
 /* Hero card: descripción oculta por defecto, se revela en hover */
 .work-card--hero .work-card__desc {
     opacity: 0;

@@ -295,6 +295,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         card.classList.add('card-in');
                     }
                 });
+
+                // Ajustar layout cuando la hero card queda oculta por el filtro
+                const heroCard = document.querySelector('.work-card--hero');
+                const worksGridEl = document.querySelector('.works-grid');
+                if (heroCard && worksGridEl) {
+                    worksGridEl.classList.toggle(
+                        'works-grid--no-hero',
+                        heroCard.classList.contains('is-hidden')
+                    );
+                }
             });
         });
     }
