@@ -629,28 +629,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('tef_leads', JSON.stringify(stored));
             } catch (_) {}
 
-            fetch('/api/leads', {
+            fetch('https://tef-pocketbase.lodgoa.easypanel.host/api/collections/LEAD/records', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-api-secret': 'tef-local-secret'
-                },
-                body: JSON.stringify(leadData)
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    Nombre:       leadData.nombre,
+                    Email:        leadData.email,
+                    Telefono:     leadData.telefono,
+                    Origen:       leadData.origen,
+                    Especialidad: leadData.especialidad,
+                    Edificacion:  leadData.edificacion,
+                    Superficie:   leadData.superficie,
+                    Detalles:     leadData.detalles,
+                    Marca:        leadData.marcaPreferida,
+                    Plazo:        leadData.plazoEstimado,
+                    Ubicacion:    leadData.ubicacion
+                })
             })
             .then(response => {
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 return response.json();
             })
             .then(() => {
-                // Lead confirmado en servidor — borrar copia local para no duplicar
                 try {
                     const stored = JSON.parse(localStorage.getItem('tef_leads') || '[]');
                     const filtered = stored.filter(l => l.email !== leadData.email || l.timestamp !== stored[stored.length - 1]?.timestamp);
                     localStorage.setItem('tef_leads', JSON.stringify(filtered));
                 } catch (_) {}
+                fetch('https://tef-n8n.lodgoa.easypanel.host/webhook/f04a2354-0feb-4834-952e-29dbb8a6efbb', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        company: leadData.nombre,
+                        email:   leadData.email,
+                        goal:    leadData.especialidad + ' - ' + leadData.detalles
+                    })
+                }).catch(() => {});
             })
             .catch(() => {
-                // Fallo silencioso: el lead ya está en localStorage, se recuperará manualmente
+                // Fallo silencioso: el lead ya está en localStorage como respaldo
             });
             // --- FIN PERSISTENCIA ---
 

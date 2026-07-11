@@ -204,6 +204,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok || response.redirected) {
+                    // Guardar también en PocketBase
+                    const phone = contactForm.querySelector('#phone')?.value.trim() || '';
+                    const email = contactForm.querySelector('#email')?.value.trim() || '';
+                    const especialidad = contactForm.querySelector('#service-hidden')?.value || '';
+                    fetch('https://tef-pocketbase.lodgoa.easypanel.host/api/collections/LEAD/records', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            Nombre:   name,
+                            Email:    email,
+                            Telefono: phone,
+                            Detalles: message,
+                            Origen:   'contacto',
+                            Especialidad: especialidad
+                        })
+                    }).then(() => {
+                        fetch('https://tef-n8n.lodgoa.easypanel.host/webhook/f04a2354-0feb-4834-952e-29dbb8a6efbb', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                company: name,
+                                email:   email,
+                                goal:    especialidad + ' - ' + message
+                            })
+                        });
+                    }).catch(() => {});
+
                     contactForm.reset();
                     if (formSuccess) {
                         formSuccess.style.display = 'flex';
