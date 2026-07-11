@@ -656,7 +656,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const filtered = stored.filter(l => l.email !== leadData.email || l.timestamp !== stored[stored.length - 1]?.timestamp);
                     localStorage.setItem('tef_leads', JSON.stringify(filtered));
                 } catch (_) {}
-                fetch('https://tef-n8n.lodgoa.easypanel.host/webhook/f04a2354-0feb-4834-952e-29dbb8a6efbb', {
+                fetch('https://tef-n8n.lodgoa.easypanel.host/webhook/tef', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
