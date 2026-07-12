@@ -724,7 +724,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!chatWidget || !chatToggle) return;
 
-        const CHAT_API = 'https://tef-chat-api.lodgoa.easypanel.host/api/chat';
+        const CHAT_API = 'https://tef-tef-chat-api.lodgoa.easypanel.host/api/chat';
         const conversationHistory = [];
         let isFirstOpen = true;
 
