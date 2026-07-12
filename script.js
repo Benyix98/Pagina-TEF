@@ -402,10 +402,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3500);
     }
 
-    // Fix ticker loop: set exact pixel translation to avoid -50% browser quirks
-    document.querySelectorAll('.cta-ticker-track, .logo-marquee-track, .sp-ticker-track').forEach(track => {
-        const half = track.offsetWidth / 2;
-        if (half > 0) track.style.setProperty('--ticker-end', `-${half}px`);
-    });
-
 });

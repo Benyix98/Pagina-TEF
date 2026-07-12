@@ -830,7 +830,7 @@ button {
 
 @keyframes marquee-scroll {
     from { transform: translateX(0); }
-    to   { transform: translateX(var(--ticker-end, -50%)); }
+    to   { transform: translateX(-50%); }
 }
 
 .client-logo {
@@ -2145,7 +2145,7 @@ button {
 
 @keyframes ctaTicker {
     0%   { transform: translateX(0); }
-    100% { transform: translateX(var(--ticker-end, -50%)); }
+    100% { transform: translateX(-50%); }
 }
 
 /* ===== CONTACT ===== */
@@ -3398,7 +3398,7 @@ button {
 .sp-ticker-dot { color: rgba(255,255,255,.4); }
 @keyframes spTicker {
     0%   { transform: translateX(0); }
-    100% { transform: translateX(var(--ticker-end, -50%)); }
+    100% { transform: translateX(-50%); }
 }
 .sp-stats {
     display: grid;
