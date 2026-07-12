@@ -402,4 +402,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3500);
     }
 
+    // =========================================================================
+    // SHOWCASE MODE — loop automático hero → CTA final, activado con ?showcase=1
+    // Usado únicamente para el preview embebido en la web de Benia Agency.
+    // Sin el query param, el comportamiento normal de la página no cambia.
+    // =========================================================================
+    function runShowcaseLoop() {
+        const ctaFinalSection = document.querySelector('.cta-final');
+        if (!ctaFinalSection) return;
+
+        function cycle() {
+            window.scrollTo({ top: 0, behavior: 'auto' });
+
+            setTimeout(() => {
+                ctaStarted = false;
+                ctaEyebrow?.classList.remove('cta-lit');
+                ctaWords.forEach(w => w.classList.remove('cta-lit'));
+                ctaFinalSub?.classList.remove('cta-lit');
+                ctaFinalBtn?.classList.remove('cta-lit');
+                ctaFinalSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 6600);
+
+            setTimeout(cycle, 12000);
+        }
+
+        cycle();
+    }
+
+    if (new URLSearchParams(window.location.search).has('showcase')) {
+        runShowcaseLoop();
+    }
+
 });
