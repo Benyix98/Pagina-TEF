@@ -819,7 +819,7 @@ button {
 .logo-marquee-track {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 0;
     width: max-content;
     animation: marquee-scroll 30s linear infinite;
 }
@@ -839,6 +839,7 @@ button {
 
 .client-logo {
     flex-shrink: 0;
+    margin-right: 16px;
     padding: 14px 32px;
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 6px;
@@ -2126,13 +2127,14 @@ button {
 
 .cta-ticker-track {
     display: flex;
-    gap: 40px;
+    gap: 0;
     white-space: nowrap;
     animation: ctaTicker 18s linear infinite;
     width: max-content;
 }
 
 .cta-ticker-track span {
+    margin-right: 40px;
     font-size: 0.6rem;
     font-weight: 700;
     letter-spacing: 2.5px;
@@ -3385,11 +3387,12 @@ button {
 }
 .sp-ticker-track {
     display: flex;
-    gap: 28px;
+    gap: 0;
     animation: spTicker 16s linear infinite;
     white-space: nowrap;
 }
 .sp-ticker-track span {
+    margin-right: 28px;
     font-size: .72rem;
     font-weight: 700;
     color: rgba(255,255,255,.9);
