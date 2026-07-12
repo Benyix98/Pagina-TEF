@@ -403,30 +403,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================================================
-    // SHOWCASE MODE — loop automático hero → CTA final, activado con ?showcase=1
+    // SHOWCASE MODE — loop automático del CTA final, activado con ?showcase=1
     // Usado únicamente para el preview embebido en la web de Benia Agency.
     // Sin el query param, el comportamiento normal de la página no cambia.
+    // Encuadra el CTA arriba del todo (scroll fijo, una sola vez) para que en
+    // el mismo recuadro se vea también el arranque de la sección de Proyectos
+    // que va justo debajo, y repite el reveal de palabras en loop sin depender
+    // del IntersectionObserver de scroll (llama a runCtaAnimation directamente).
     // =========================================================================
     function runShowcaseLoop() {
         const ctaFinalSection = document.querySelector('.cta-final');
         if (!ctaFinalSection) return;
 
+        ctaFinalSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+
         function cycle() {
-            window.scrollTo({ top: 0, behavior: 'auto' });
-
-            setTimeout(() => {
-                ctaStarted = false;
-                ctaEyebrow?.classList.remove('cta-lit');
-                ctaWords.forEach(w => w.classList.remove('cta-lit'));
-                ctaFinalSub?.classList.remove('cta-lit');
-                ctaFinalBtn?.classList.remove('cta-lit');
-                ctaFinalSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 6600);
-
-            setTimeout(cycle, 12000);
+            ctaStarted = false;
+            ctaEyebrow?.classList.remove('cta-lit');
+            ctaWords.forEach(w => w.classList.remove('cta-lit'));
+            ctaFinalSub?.classList.remove('cta-lit');
+            ctaFinalBtn?.classList.remove('cta-lit');
+            runCtaAnimation();
         }
 
         cycle();
+        setInterval(cycle, 6000);
     }
 
     if (new URLSearchParams(window.location.search).has('showcase')) {
