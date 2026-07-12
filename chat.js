@@ -724,6 +724,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!chatWidget || !chatToggle) return;
 
+        const CHAT_API = 'https://tef-chat-api.lodgoa.easypanel.host/api/chat';
+        const conversationHistory = [];
         let isFirstOpen = true;
 
         // Toggle Chat Visibility
@@ -841,29 +843,33 @@ document.addEventListener('DOMContentLoaded', () => {
             if (typingIndicator) typingIndicator.style.display = 'flex';
             scrollFloatingBottom();
 
-            await new Promise(resolve => setTimeout(resolve, 1200));
+            conversationHistory.push({ role: 'user', content: userMessage });
+
+            let reply;
+            try {
+                const res = await fetch(CHAT_API, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ messages: conversationHistory })
+                });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                reply = data.reply;
+            } catch (_) {
+                // Fallback si el backend no está disponible
+                const lowerMsg = userMessage.toLowerCase();
+                let found = '';
+                for (const key in KNOWLEDGE_BASE) {
+                    const entry = KNOWLEDGE_BASE[key];
+                    if (entry.keywords.some(kw => lowerMsg.includes(kw))) { found = entry.response; break; }
+                }
+                reply = found || '¿En qué te puedo ayudar? Cuéntame qué necesitas.';
+            }
+
+            conversationHistory.push({ role: 'assistant', content: reply });
+
             if (typingIndicator) typingIndicator.style.display = 'none';
-
-            const lowerMsg = userMessage.toLowerCase();
-            let foundResponse = "";
-
-            for (const key in KNOWLEDGE_BASE) {
-                const entry = KNOWLEDGE_BASE[key];
-                if (entry.keywords.some(keyword => lowerMsg.includes(keyword))) {
-                    foundResponse = entry.response;
-                    break;
-                }
-            }
-
-            if (!foundResponse) {
-                if (lowerMsg.includes('hola') || lowerMsg.includes('buenos') || lowerMsg.includes('buenas')) {
-                    foundResponse = "¡Hola! ¿En qué te puedo ayudar hoy?";
-                } else {
-                    foundResponse = "No he pillado bien lo que necesitas. ¿Es algo de eléctrica, fibra, cámaras o domótica?";
-                }
-            }
-
-            addFloatingMessage(foundResponse, 'ai');
+            addFloatingMessage(reply, 'ai');
         }
 
         if (chatForm) {
