@@ -769,10 +769,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 keywords: ['seguridad', 'camaras', 'cctv', 'videovigilancia', 'alarma', 'videoporteros', 'portero', 'proteccion', 'madrid', 'vigilancia'],
                 response: "Ponemos cámaras Dahua 4K, videoporteros Fermax/Legrand y sistemas de alarma conectada al móvil. Todo configurado para que veas tu casa o local en tiempo real desde cualquier sitio. ¿Es para una vivienda, comunidad o local comercial?"
             },
-            obra_nueva: {
-                keywords: ['obra', 'nueva', 'reforma', 'construccion', 'proyectos', 'promotora', 'constructora'],
-                response: "Trabajamos con promotoras y particulares en obra nueva y reformas: proyecto eléctrico completo, instalación de red de datos, antenas y domótica. Nos encargamos de toda la parte técnica para que el arquitecto no tenga que preocuparse."
-            },
             contacto: {
                 keywords: ['telefono', 'contacto', 'llamar', 'email', 'correo', 'donde', 'ubicacion', 'horario', 'emergencias', 'urgencia'],
                 response: "Puedes llamarnos o mandarnos un mensaje — atendemos de lunes a viernes de 8:00 a 18:00. Para urgencias también tenemos cobertura. ¿Prefieres que te llamemos nosotros? Deja aquí tu número."
