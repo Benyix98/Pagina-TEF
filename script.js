@@ -297,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =========================================================================
-    // MURAL DE TRABAJOS (sección #proyectos): comparador antes y después
+    // MURAL DE TRABAJOS (sección #proyectos): comparador antes y después y caso
     // =========================================================================
     const muralDialog = document.getElementById('mural-dialog');
     if (muralDialog) {
@@ -305,6 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const range = compare.querySelector('.mural-compare__range');
         const beforeImg = compare.querySelector('.mural-compare__before');
         const afterImg = compare.querySelector('.mural-compare__after');
+        const steps = muralDialog.querySelector('.mural-steps');
         const setPos = value => compare.style.setProperty('--pos', value + '%');
 
         range.addEventListener('input', () => setPos(range.value));
@@ -312,15 +313,31 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.mural-card').forEach(card => {
             card.addEventListener('click', () => {
                 const [before, after] = card.querySelectorAll('img');
-                const title = card.querySelector('.mural-card__title').textContent;
-                muralDialog.querySelector('.mural-dialog__title').textContent = title;
-                muralDialog.querySelector('.mural-dialog__desc').textContent = card.dataset.desc;
+                muralDialog.querySelector('.mural-dialog__title').textContent = card.querySelector('.mural-card__title').textContent;
+                muralDialog.querySelector('.mural-dialog__tag').textContent = card.dataset.tag;
                 beforeImg.src = before.src;
                 beforeImg.alt = before.alt;
                 afterImg.src = after.src;
                 afterImg.alt = after.alt;
-                compare.style.setProperty('--ratio', card.dataset.ratio);
-                compare.style.setProperty('--max', card.dataset.max + 'px');
+
+                steps.replaceChildren(...[...card.querySelectorAll('.mural-card__case span')].map((item, index) => {
+                    const step = document.createElement('li');
+                    step.className = 'mural-step';
+                    const number = document.createElement('span');
+                    number.className = 'mural-step__n';
+                    number.textContent = String(index + 1).padStart(2, '0');
+                    const body = document.createElement('div');
+                    const label = document.createElement('span');
+                    label.className = 'mural-step__label';
+                    label.textContent = item.dataset.label;
+                    const text = document.createElement('p');
+                    text.className = 'mural-step__text';
+                    text.textContent = item.textContent;
+                    body.append(label, text);
+                    step.append(number, body);
+                    return step;
+                }));
+
                 range.value = 50;
                 setPos(50);
                 document.documentElement.classList.add('mural-open');
