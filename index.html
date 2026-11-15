@@ -367,159 +367,135 @@
             <div class="section-header reveal">
                 <div class="section-badge">Nuestro trabajo</div>
                 <h2 class="section-title">Nuestros <span class="gradient-text">Trabajos</span></h2>
-                <p class="section-subtitle">Instalaciones reales que demuestran nuestra capacidad técnica y compromiso de calidad.</p>
+                <p class="section-subtitle">Instalaciones reales. Desliza para ver el antes y el después.</p>
             </div>
-            <div class="project-filter reveal" role="tablist" aria-label="Filtrar proyectos por categoría">
-                <button type="button" class="filter-chip active" data-filter="todos" aria-pressed="true">Todos</button>
-                <button type="button" class="filter-chip" data-filter="telecom" aria-pressed="false">Telecom</button>
-                <button type="button" class="filter-chip" data-filter="electrico" aria-pressed="false">Eléctrico</button>
-                <button type="button" class="filter-chip" data-filter="domotica" aria-pressed="false">Video Vigilancia</button>
+            <div class="mural">
+                <button type="button" class="mural-card" data-desc="Intervención en el cuadro eléctrico de una vivienda: medición de fugas con pinza, retirada del ICP y del diferencial y recomendación de instalar un diferencial clase A." data-ratio="4 / 3" data-max="880" aria-label="Comparar antes y después: Diferencial por armónicos">
+                    <span class="mural-card__copy">
+                        <span class="mural-card__title">Diferencial por armónicos</span>
+                        <span class="mural-card__sub">Avería resuelta en el cuadro eléctrico.</span>
+                        <span class="mural-card__link">Comparar antes y después ›</span>
+                    </span>
+                    <span class="mural-card__pair">
+                        <span class="mural-card__shot">
+                            <img src="images/diferencial-armonicos-antes-1.jpeg" alt="Antes: Diferencial por armónicos" loading="lazy" decoding="async">
+                            <span class="mural-chip">Antes</span>
+                        </span>
+                        <span class="mural-card__shot">
+                            <img src="images/diferencial-armonicos-despues.jpeg" alt="Después: Diferencial por armónicos" loading="lazy" decoding="async">
+                            <span class="mural-chip mural-chip--after">Después</span>
+                        </span>
+                    </span>
+                </button>
+                <button type="button" class="mural-card" data-desc="Retirada de antenas antiguas e instalación de una antena nueva con filtro 5G para mejorar la calidad de la señal." data-ratio="3 / 4" data-max="480" aria-label="Comparar antes y después: Mejor señal de TDT">
+                    <span class="mural-card__copy">
+                        <span class="mural-card__title">Mejor señal de TDT</span>
+                        <span class="mural-card__sub">Antena nueva con filtro 5G.</span>
+                        <span class="mural-card__link">Comparar antes y después ›</span>
+                    </span>
+                    <span class="mural-card__pair">
+                        <span class="mural-card__shot">
+                            <img src="images/mejora-tdt-antena-antigua-1.jpeg" alt="Antes: Mejor señal de TDT" loading="lazy" decoding="async">
+                            <span class="mural-chip">Antes</span>
+                        </span>
+                        <span class="mural-card__shot">
+                            <img src="images/mejora-tdt-antena-filtro-5g-1.jpeg" alt="Después: Mejor señal de TDT" loading="lazy" decoding="async">
+                            <span class="mural-chip mural-chip--after">Después</span>
+                        </span>
+                    </span>
+                </button>
+                <button type="button" class="mural-card" data-desc="Sustitución de un cuadro eléctrico antiguo por un cuadro nuevo, ordenado y rotulado por circuitos." data-ratio="1 / 1" data-max="640" aria-label="Comparar antes y después: Cuadros industriales">
+                    <span class="mural-card__copy">
+                        <span class="mural-card__title">Cuadros industriales</span>
+                        <span class="mural-card__sub">De un cuadro antiguo a uno rotulado.</span>
+                        <span class="mural-card__link">Comparar antes y después ›</span>
+                    </span>
+                    <span class="mural-card__pair">
+                        <span class="mural-card__shot">
+                            <img src="images/cuadro-electrico-2.jpeg" alt="Antes: Cuadros industriales" loading="lazy" decoding="async">
+                            <span class="mural-chip">Antes</span>
+                        </span>
+                        <span class="mural-card__shot">
+                            <img src="images/instalaciones-electricas-cuadros-industriales.jpeg" alt="Después: Cuadros industriales" loading="lazy" decoding="async">
+                            <span class="mural-chip mural-chip--after">Después</span>
+                        </span>
+                    </span>
+                </button>
+                <button type="button" class="mural-card" data-desc="Instalación completa de cableado nuevo y sistema de alumbrado profesional en una tienda de moda." data-ratio="4 / 3" data-max="880" aria-label="Comparar antes y después: Alumbrado para tienda">
+                    <span class="mural-card__copy">
+                        <span class="mural-card__title">Alumbrado para tienda</span>
+                        <span class="mural-card__sub">Cableado nuevo en un centro comercial.</span>
+                        <span class="mural-card__link">Comparar antes y después ›</span>
+                    </span>
+                    <span class="mural-card__pair">
+                        <span class="mural-card__shot">
+                            <img src="images/tienda-cc-antes.jpeg" alt="Antes: Alumbrado para tienda" loading="lazy" decoding="async">
+                            <span class="mural-chip">Antes</span>
+                        </span>
+                        <span class="mural-card__shot">
+                            <img src="images/tienda-cc-despues.jpeg" alt="Después: Alumbrado para tienda" loading="lazy" decoding="async">
+                            <span class="mural-chip mural-chip--after">Después</span>
+                        </span>
+                    </span>
+                </button>
+                <button type="button" class="mural-card" data-desc="Instalación de cámaras de videovigilancia en una nave industrial." data-ratio="4 / 3" data-max="880" aria-label="Comparar antes y después: Cámaras en nave">
+                    <span class="mural-card__copy">
+                        <span class="mural-card__title">Cámaras en nave</span>
+                        <span class="mural-card__sub">Videovigilancia para una nave industrial.</span>
+                        <span class="mural-card__link">Comparar antes y después ›</span>
+                    </span>
+                    <span class="mural-card__pair">
+                        <span class="mural-card__shot">
+                            <img src="images/videovigilancia3.jpeg" alt="Antes: Cámaras en nave" loading="lazy" decoding="async">
+                            <span class="mural-chip">Antes</span>
+                        </span>
+                        <span class="mural-card__shot">
+                            <img src="images/videovigilancia4.jpeg" alt="Después: Cámaras en nave" loading="lazy" decoding="async">
+                            <span class="mural-chip mural-chip--after">Después</span>
+                        </span>
+                    </span>
+                </button>
+                <button type="button" class="mural-card" data-desc="Impermeabilización de la base de hormigón de una torreta de antena TDT para evitar filtraciones." data-ratio="3 / 4" data-max="480" aria-label="Comparar antes y después: Torretas impermeables">
+                    <span class="mural-card__copy">
+                        <span class="mural-card__title">Torretas impermeables</span>
+                        <span class="mural-card__sub">Base de hormigón protegida de filtraciones.</span>
+                        <span class="mural-card__link">Comparar antes y después ›</span>
+                    </span>
+                    <span class="mural-card__pair">
+                        <span class="mural-card__shot">
+                            <img src="images/impermeabilizacion-torreta-tdt-2.jpeg" alt="Antes: Torretas impermeables" loading="lazy" decoding="async">
+                            <span class="mural-chip">Antes</span>
+                        </span>
+                        <span class="mural-card__shot">
+                            <img src="images/impermeabilizacion-torreta-tdt-3.jpeg" alt="Después: Torretas impermeables" loading="lazy" decoding="async">
+                            <span class="mural-chip mural-chip--after">Después</span>
+                        </span>
+                    </span>
+                </button>
             </div>
-            <div class="works-grid">
-
-                <!-- HERO -->
-                <a class="work-card work-card--hero reveal" href="caso-antenas-tdt.html" data-category="telecom" aria-label="Ver caso de estudio: Instalación de Antenas TDT y Satélite">
-                    <img src="images/instalacion-antenas-tv-tdt.jpeg" alt="Instalación de Antenas" loading="lazy" decoding="async">
-                    <div class="work-card__overlay"></div>
-                    <div class="work-card__body">
-                        <div class="work-card__tags">
-                            <span class="work-tag">Residencial</span>
-                            <span class="work-tag">TV</span>
-                        </div>
-                        <div class="work-card__title">Instalación de Antenas TDT y Satélite</div>
-                        <div class="work-card__desc">Sistemas de recepción TDT y satélite para comunidades de vecinos en Madrid. Medición, instalación y certificación incluidas.</div>
-                    </div>
-                    <div class="work-card__arrow">↗</div>
-                </a>
-
-                <!-- SECONDARY 2×2 -->
-                <div class="works-grid__secondary">
-
-                    <!-- Fibra Óptica -->
-                    <a class="work-card reveal" href="caso-fibra-optica.html" data-category="telecom" aria-label="Ver caso de estudio: Red de Fibra Óptica">
-                        <img src="images/instalacion-fibra-optica-telecomunicaciones.jpeg" alt="Red de Fibra Óptica" loading="lazy" decoding="async">
-                        <div class="work-card__overlay"></div>
-                        <div class="work-card__num">02</div>
-                        <div class="work-card__body">
-                            <div class="work-card__tags">
-                                <span class="work-tag">Telecom</span>
-                                <span class="work-tag">Empresas</span>
-                            </div>
-                            <div class="work-card__title">Red de Fibra Óptica</div>
-                        </div>
-                        <div class="work-card__arrow">↗</div>
-                    </a>
-
-                    <!-- Cuadros Industriales -->
-                    <a class="work-card reveal" href="caso-cuadros-industriales.html" data-category="electrico" aria-label="Ver caso de estudio: Cuadros Industriales">
-                        <img src="images/instalaciones-electricas-cuadros-industriales.jpeg" alt="Cuadros Industriales" loading="lazy" decoding="async">
-                        <div class="work-card__overlay"></div>
-                        <div class="work-card__num">03</div>
-                        <div class="work-card__body">
-                            <div class="work-card__tags">
-                                <span class="work-tag">Industrial</span>
-                                <span class="work-tag">Seguridad</span>
-                            </div>
-                            <div class="work-card__title">Cuadros Industriales</div>
-                        </div>
-                        <div class="work-card__arrow">↗</div>
-                    </a>
-
-                    <!-- Domótica -->
-                    <a class="work-card reveal" href="caso-domotica.html" data-category="domotica" aria-label="Ver caso de estudio: Sistemas de Domótica">
-                        <img src="images/instalacion-video-porteros-domotica.jpeg" alt="Sistemas de Domótica" loading="lazy" decoding="async">
-                        <div class="work-card__overlay"></div>
-                        <div class="work-card__num">04</div>
-                        <div class="work-card__body">
-                            <div class="work-card__tags">
-                                <span class="work-tag">Domótica</span>
-                                <span class="work-tag">Smart Home</span>
-                            </div>
-                            <div class="work-card__title">Sistemas de Domótica</div>
-                        </div>
-                        <div class="work-card__arrow">↗</div>
-                    </a>
-
-
-                    <!-- Cámaras Nave Industrial -->
-                    <a class="work-card reveal" href="caso-camaras-nave.html" data-category="domotica" aria-label="Ver caso de estudio: Sistema de Cámaras en Nave Industrial">
-                        <img src="images/videovigilancia3.jpeg" alt="Sistema de cámaras en nave industrial" loading="lazy" decoding="async">
-                        <div class="work-card__overlay"></div>
-                        <div class="work-card__num">06</div>
-                        <div class="work-card__body">
-                            <div class="work-card__tags">
-                                <span class="work-tag">Industrial</span>
-                                <span class="work-tag">Seguridad</span>
-                            </div>
-                            <div class="work-card__title">Cámaras en Nave Industrial</div>
-                        </div>
-                        <div class="work-card__arrow">↗</div>
-                    </a>
-
-                    <!-- Impermeabilización Torretas TDT -->
-                    <a class="work-card reveal" href="caso-impermeabilizacion-torretas.html" data-category="telecom" aria-label="Ver caso de estudio: Impermeabilización de Torretas TDT">
-                        <img src="images/impermeabilizacion-torreta-tdt.jpeg" alt="Impermeabilización de torretas TDT" loading="lazy" decoding="async">
-                        <div class="work-card__overlay"></div>
-                        <div class="work-card__num">07</div>
-                        <div class="work-card__body">
-                            <div class="work-card__tags">
-                                <span class="work-tag">Antenas</span>
-                                <span class="work-tag">Filtraciones</span>
-                            </div>
-                            <div class="work-card__title">Impermeabilización de Torretas TDT</div>
-                        </div>
-                        <div class="work-card__arrow">↗</div>
-                    </a>
-
-                    <!-- Tienda Centro Comercial -->
-                    <a class="work-card reveal" href="caso-tienda-cc.html" data-category="electrico" aria-label="Ver caso de estudio: Cableado y Alumbrado en Tienda de Centro Comercial">
-                        <img src="images/tienda-cc-despues.jpeg" alt="Tienda de moda en centro comercial con alumbrado LED" loading="lazy" decoding="async">
-                        <div class="work-card__overlay"></div>
-                        <div class="work-card__num">08</div>
-                        <div class="work-card__body">
-                            <div class="work-card__tags">
-                                <span class="work-tag">Comercial</span>
-                                <span class="work-tag">Alumbrado</span>
-                            </div>
-                            <div class="work-card__title">Tienda en Centro Comercial</div>
-                        </div>
-                        <div class="work-card__arrow">↗</div>
-                    </a>
-
-                    <!-- Diferencial por armónicos -->
-                    <a class="work-card reveal" href="caso-diferencial-armonicos.html" data-category="electrico" aria-label="Ver caso de estudio: Diferencial que salta por armónicos">
-                        <img src="images/diferencial-armonicos-despues.jpeg" alt="Cuadro eléctrico tras la intervención por armónicos" loading="lazy" decoding="async">
-                        <div class="work-card__overlay"></div>
-                        <div class="work-card__num">09</div>
-                        <div class="work-card__body">
-                            <div class="work-card__tags">
-                                <span class="work-tag">Avería</span>
-                                <span class="work-tag">Diferencial</span>
-                            </div>
-                            <div class="work-card__title">Diferencial que salta por armónicos</div>
-                        </div>
-                        <div class="work-card__arrow">↗</div>
-                    </a>
-
-                    <!-- Mejora recepción TDT -->
-                    <a class="work-card reveal" href="caso-mejora-tdt.html" data-category="telecom" aria-label="Ver caso de estudio: Mejora de recepción TDT con filtro 5G">
-                        <img src="images/mejora-tdt-antena-filtro-5g-1.jpeg" alt="Antena nueva de TDT con filtro 5G" loading="lazy" decoding="async">
-                        <div class="work-card__overlay"></div>
-                        <div class="work-card__num">10</div>
-                        <div class="work-card__body">
-                            <div class="work-card__tags">
-                                <span class="work-tag">Antenas</span>
-                                <span class="work-tag">Filtro 5G</span>
-                            </div>
-                            <div class="work-card__title">Mejora de recepción TDT</div>
-                        </div>
-                        <div class="work-card__arrow">↗</div>
-                    </a>
-
-                </div><!-- /.works-grid__secondary -->
-
-            </div><!-- /.works-grid -->
         </div>
+
+        <dialog class="mural-dialog" id="mural-dialog" aria-labelledby="mural-dialog-title">
+            <div class="mural-dialog__head">
+                <h3 class="mural-dialog__title" id="mural-dialog-title"></h3>
+                <button type="button" class="mural-dialog__close" aria-label="Cerrar">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"/></svg>
+                </button>
+            </div>
+            <div class="mural-compare" id="mural-compare">
+                <img class="mural-compare__after" alt="">
+                <img class="mural-compare__before" alt="">
+                <span class="mural-chip mural-compare__tag">Antes</span>
+                <span class="mural-chip mural-chip--after mural-compare__tag mural-compare__tag--right">Después</span>
+                <div class="mural-compare__line"></div>
+                <input class="mural-compare__range" type="range" min="0" max="100" step="1" value="50" aria-label="Comparar antes y después">
+                <div class="mural-compare__handle">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6l-5 5 5 5M14 6l5 5-5 5"/></svg>
+                </div>
+            </div>
+            <p class="mural-dialog__desc"></p>
+            <a class="mural-dialog__cta" href="chat.html">Pedir presupuesto</a>
+        </dialog>
     </section>
 
     <!-- ========== SOCIAL PROOF SECTION ========== -->

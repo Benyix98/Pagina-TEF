@@ -297,43 +297,45 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =========================================================================
-    // FILTRO DE PROYECTOS (sección #proyectos)
+    // MURAL DE TRABAJOS (sección #proyectos): comparador antes y después
     // =========================================================================
-    const filterChips = document.querySelectorAll('.project-filter .filter-chip');
-    const workCards = document.querySelectorAll('.works-grid .work-card');
-    if (filterChips.length && workCards.length) {
-        filterChips.forEach(chip => {
-            chip.addEventListener('click', () => {
-                const filter = chip.dataset.filter;
+    const muralDialog = document.getElementById('mural-dialog');
+    if (muralDialog) {
+        const compare = document.getElementById('mural-compare');
+        const range = compare.querySelector('.mural-compare__range');
+        const beforeImg = compare.querySelector('.mural-compare__before');
+        const afterImg = compare.querySelector('.mural-compare__after');
+        const setPos = value => compare.style.setProperty('--pos', value + '%');
 
-                filterChips.forEach(c => {
-                    const isActive = c === chip;
-                    c.classList.toggle('active', isActive);
-                    c.setAttribute('aria-pressed', String(isActive));
-                });
+        range.addEventListener('input', () => setPos(range.value));
 
-                workCards.forEach(card => {
-                    const match = filter === 'todos' || card.dataset.category === filter;
-                    card.classList.toggle('is-hidden', !match);
-                    if (match) {
-                        card.classList.remove('card-in');
-                        // reflow para reiniciar la animación
-                        void card.offsetWidth;
-                        card.classList.add('card-in');
-                    }
-                });
-
-                // Ajustar layout cuando la hero card queda oculta por el filtro
-                const heroCard = document.querySelector('.work-card--hero');
-                const worksGridEl = document.querySelector('.works-grid');
-                if (heroCard && worksGridEl) {
-                    worksGridEl.classList.toggle(
-                        'works-grid--no-hero',
-                        heroCard.classList.contains('is-hidden')
-                    );
-                }
+        document.querySelectorAll('.mural-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const [before, after] = card.querySelectorAll('img');
+                const title = card.querySelector('.mural-card__title').textContent;
+                muralDialog.querySelector('.mural-dialog__title').textContent = title;
+                muralDialog.querySelector('.mural-dialog__desc').textContent = card.dataset.desc;
+                beforeImg.src = before.src;
+                beforeImg.alt = before.alt;
+                afterImg.src = after.src;
+                afterImg.alt = after.alt;
+                compare.style.setProperty('--ratio', card.dataset.ratio);
+                compare.style.setProperty('--max', card.dataset.max + 'px');
+                range.value = 50;
+                setPos(50);
+                document.documentElement.classList.add('mural-open');
+                muralDialog.showModal();
             });
         });
+
+        muralDialog.querySelector('.mural-dialog__close').addEventListener('click', () => muralDialog.close());
+        muralDialog.addEventListener('click', event => {
+            const box = muralDialog.getBoundingClientRect();
+            const inside = event.clientX >= box.left && event.clientX <= box.right &&
+                event.clientY >= box.top && event.clientY <= box.bottom;
+            if (!inside) muralDialog.close();
+        });
+        muralDialog.addEventListener('close', () => document.documentElement.classList.remove('mural-open'));
     }
 
     // =========================================================================
