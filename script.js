@@ -77,52 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================================================
-    // 4. HERO SLOGANS SLIDER
-    // =========================================================================
-    const slogans = document.querySelectorAll('.hero-slogan');
-    const heroFadeElements = document.querySelectorAll('.hero-fade-element');
-
-    if (slogans.length > 0) {
-        let currentSlogan = 0;
-        const SLOGAN_DURATION = 2200;
-        const TOTAL_SLOGAN_TIME = slogans.length * SLOGAN_DURATION;
-
-        function showSlogan(index) {
-            slogans.forEach((s, i) => {
-                s.classList.remove('active', 'exit');
-                if (i === index) s.classList.add('active');
-                else if (i === (index - 1 + slogans.length) % slogans.length) s.classList.add('exit');
-            });
-        }
-
-        showSlogan(0);
-        const sloganInterval = setInterval(() => {
-            currentSlogan++;
-            if (currentSlogan >= slogans.length) {
-                clearInterval(sloganInterval);
-                // Salida suave del último slogan
-                slogans.forEach(s => {
-                    if (s.classList.contains('active')) {
-                        s.classList.remove('active');
-                        s.classList.add('exit');
-                    } else {
-                        s.classList.remove('active', 'exit');
-                    }
-                });
-                // Revelar hero tras completar la transición de salida
-                setTimeout(() => {
-                    slogans.forEach(s => { s.style.display = 'none'; });
-                    heroFadeElements.forEach(el => el.classList.add('fade-in'));
-                }, 600);
-                return;
-            }
-            showSlogan(currentSlogan);
-        }, SLOGAN_DURATION);
-    } else {
-        heroFadeElements.forEach(el => el.classList.add('fade-in'));
-    }
-
-    // =========================================================================
     // 5. SCROLL REVEAL
     // =========================================================================
     const revealElements = document.querySelectorAll('.reveal');
@@ -141,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================================================
     // 6. CONTADORES DE ESTADÍSTICAS
     // =========================================================================
-    const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+    const statNumbers = document.querySelectorAll('[data-target]');
     if (statNumbers.length > 0) {
         const countObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -254,38 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // =========================================================================
-    // CTA FINAL — animación de palabras izquierda a derecha
-    // =========================================================================
-    const ctaFinalSection = document.querySelector('.cta-final');
-    const ctaWords        = document.querySelectorAll('.cta-w');
-    const ctaEyebrow      = document.getElementById('ctaEyebrow');
-    const ctaFinalSub     = document.getElementById('ctaFinalSub');
-    const ctaFinalBtn     = document.getElementById('ctaFinalBtnWrap');
-    let ctaStarted = false;
-
-    function runCtaAnimation() {
-        if (ctaStarted) return;
-        ctaStarted = true;
-
-        setTimeout(() => ctaEyebrow?.classList.add('cta-lit'), 200);
-
-        ctaWords.forEach((w, i) => {
-            setTimeout(() => w.classList.add('cta-lit'), 500 + i * 320);
-        });
-
-        const endDelay = 500 + (ctaWords.length - 1) * 320 + 500;
-        setTimeout(() => ctaFinalSub?.classList.add('cta-lit'), endDelay);
-        setTimeout(() => ctaFinalBtn?.classList.add('cta-lit'), endDelay + 300);
-    }
-
-    if (ctaFinalSection) {
-        const ctaObserver = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) runCtaAnimation();
-        }, { threshold: 0.35 });
-        ctaObserver.observe(ctaFinalSection);
-    }
-
     // Chips de servicio en el formulario de contacto
     document.querySelectorAll('.service-chip').forEach(chip => {
         chip.addEventListener('click', () => {
@@ -369,88 +291,5 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-    // =========================================================================
-    // 9. TIMELINE + CTA ROTATOR — animación secuencial
-    // =========================================================================
-    const tlItems   = ['tl1','tl2','tl3','tl4','tl5'];
-    const tlFill    = document.getElementById('timelineFill');
-    const ctaSection = document.getElementById('ctaSection');
-
-    if (tlFill) {
-        const DELAY_FIRST   = 500;
-        const DELAY_BETWEEN = 900;
-
-        // Activar línea de color
-        setTimeout(() => { tlFill.style.height = '100%'; }, 300);
-
-        // Aparecer items uno a uno
-        tlItems.forEach((id, i) => {
-            setTimeout(() => {
-                const el = document.getElementById(id);
-                if (el) el.classList.add('tl-visible');
-            }, DELAY_FIRST + i * DELAY_BETWEEN);
-        });
-
-        // Aparecer sección CTA tras el último item
-        const ctaDelay = DELAY_FIRST + (tlItems.length - 1) * DELAY_BETWEEN + 1000;
-        setTimeout(() => {
-            if (ctaSection) {
-                ctaSection.classList.add('cta-visible');
-                startCtaRotator();
-            }
-        }, ctaDelay);
-    }
-
-    function startCtaRotator() {
-        const rotatorItems = document.querySelectorAll('.cta-rotator-item');
-        const dots         = document.querySelectorAll('.cta-dot');
-        if (rotatorItems.length < 2) return;
-
-        let currentCta = 0;
-        setInterval(() => {
-            const prev = rotatorItems[currentCta];
-            prev.classList.remove('is-active');
-            prev.classList.add('is-leaving');
-            dots[currentCta].classList.remove('active');
-            setTimeout(() => prev.classList.remove('is-leaving'), 620);
-
-            currentCta = (currentCta + 1) % rotatorItems.length;
-            rotatorItems[currentCta].classList.add('is-active');
-            dots[currentCta].classList.add('active');
-        }, 3500);
-    }
-
-    // =========================================================================
-    // SHOWCASE MODE — loop automático del CTA final, activado con ?showcase=1
-    // Usado únicamente para el preview embebido en la web de Benia Agency.
-    // Sin el query param, el comportamiento normal de la página no cambia.
-    // Encuadra el CTA arriba del todo (scroll fijo, una sola vez) para que en
-    // el mismo recuadro se vea también el arranque de la sección de Proyectos
-    // que va justo debajo, y repite el reveal de palabras en loop sin depender
-    // del IntersectionObserver de scroll (llama a runCtaAnimation directamente).
-    // =========================================================================
-    function runShowcaseLoop() {
-        const ctaFinalSection = document.querySelector('.cta-final');
-        if (!ctaFinalSection) return;
-
-        ctaFinalSection.scrollIntoView({ behavior: 'auto', block: 'start' });
-
-        function cycle() {
-            ctaStarted = false;
-            ctaEyebrow?.classList.remove('cta-lit');
-            ctaWords.forEach(w => w.classList.remove('cta-lit'));
-            ctaFinalSub?.classList.remove('cta-lit');
-            ctaFinalBtn?.classList.remove('cta-lit');
-            runCtaAnimation();
-        }
-
-        cycle();
-        setInterval(cycle, 6000);
-    }
-
-    if (new URLSearchParams(window.location.search).has('showcase')) {
-        runShowcaseLoop();
-    }
 
 });

@@ -34,6 +34,9 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="home.css">
+    <script>document.documentElement.classList.add('js');</script>
+    <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important;clip-path:none !important}</style></noscript>
 
     <!-- Structured Data (JSON-LD) for Local SEO -->
     <script type="application/ld+json">
@@ -88,287 +91,150 @@
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 </head>
 
-<body>
+<body class="home">
 
 
 
-    <!-- ========== PARTICLES BACKGROUND ========== -->
+    <!-- ========== PUNTOS DE FONDO ========== -->
     <div id="particles-container" class="particles-container" aria-hidden="true"></div>
 
-    <!-- ========== NAVBAR (PILL & HAMBURGER) ========== -->
-    <nav class="navbar pill-navbar" id="navbar" role="navigation" aria-label="Navegación principal">
-        <div class="container nav-container">
-            <a href="#inicio" class="nav-logo" aria-label="TEF - Empresa de Instalaciones Eléctricas">
-                <img src="images/logo-nuevo.png"
-                    alt="Logo TEF Instalaciones Eléctricas Profesionales" class="logo-img">
-                <span class="logo-text"></span>
+    <!-- ========== BARRA SUPERIOR ========== -->
+    <header class="h-nav" id="navbar">
+        <div class="h-nav__inner">
+            <a href="#inicio" class="h-nav__logo" aria-label="TEF, inicio">
+                <img src="images/logo-nuevo.png" alt="Logo TEF Instalaciones Eléctricas Profesionales" width="30" height="30">
             </a>
-            <!-- Inline Menu (Hidden by default, expands horizontally) -->
-            <div class="nav-menu-inline" id="nav-menu-inline" aria-hidden="true">
-                <ul class="mobile-nav-links">
-                    <li><a href="#inicio" class="mobile-nav-link">Inicio</a></li>
-                    <li class="has-submenu">
-                        <button class="mobile-nav-link submenu-toggle" id="submenu-toggle"
-                            aria-expanded="false">Servicios ▼</button>
-                        <ul class="submenu" id="servicios-submenu">
-                            <li><a href="fibra-optica.html" class="submenu-link">Redes</a></li>
-                            <li><a href="instalaciones-electricas.html" class="submenu-link">Instalaciones Eléctricas</a></li>
-                            <li><a href="antenas-tv.html" class="submenu-link">Antenas TV</a></li>
-                            <li><a href="domotica.html" class="submenu-link">Video Vigilancia</a></li>
-                            <li><a href="seguridad-videovigilancia.html" class="submenu-link">Seguridad CCTV</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#proyectos" class="mobile-nav-link">Proyectos</a></li>
-                    <li><a href="#sobre-nosotros" class="mobile-nav-link">Sobre Nosotros</a></li>
-                    <li><a href="#contacto" class="mobile-nav-link">Contactar</a></li>
+            <nav aria-label="Navegación principal">
+                <ul class="h-nav__links" id="nav-menu-inline">
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#proyectos">Trabajos</a></li>
+                    <li><a href="#sobre-nosotros">Sobre nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
                 </ul>
-            </div>
-
-            <!-- Toggle Button -->
-            <button class="mobile-menu-toggle visible-desktop" id="mobile-menu-toggle" aria-label="Abrir menú"
-                aria-expanded="false">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
+            </nav>
+            <a href="chat.html" class="h-nav__cta">Pedir presupuesto</a>
+            <button type="button" class="h-nav__toggle" id="mobile-menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu-inline">
+                <span></span><span></span><span></span>
             </button>
-
         </div>
-    </nav>
+    </header>
 
+    <main>
 
-
-    <!-- ========== HERO SECTION ========== -->
-    <section class="hero" id="inicio" aria-label="Sección principal">
-        <div class="hero-grid-lines" aria-hidden="true"></div>
-
-        <!-- Slogans Slider (Intro replacement) positioned absolutely across full body width -->
-        <div id="hero-slogans-container" class="hero-slogans-container">
-            <div class="hero-slogan" data-index="0">Lo dejamos funcionando.<br><span class="gradient-text">A la primera.</span></div>
-            <div class="hero-slogan" data-index="1">Sin líos con el boletín.<br><span class="gradient-text">Nosotros lo gestionamos.</span></div>
-            <div class="hero-slogan" data-index="2">11 años enchufando<br><span class="gradient-text">Madrid.</span></div>
+    <!-- ========== PORTADA ========== -->
+    <section class="h-hero" id="inicio" aria-label="Sección principal">
+        <p class="h-hero__eyebrow">Instaladores autorizados · Madrid y alrededores</p>
+        <h1 class="h-hero__title">
+            <span class="h-w">Lo&nbsp;dejamos</span>
+            <span class="h-w">funcionando.</span>
+            <span class="h-w h-w--accent">A&nbsp;la&nbsp;primera.</span>
+        </h1>
+        <svg class="h-hero__bolt" viewBox="0 0 900 48" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 24 H300 L326 6 L350 42 L376 14 L396 24 H900" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" />
+        </svg>
+        <p class="h-hero__sub">Electricistas y telecomunicaciones. Presupuesto antes de empezar y boletín eléctrico al terminar.</p>
+        <div class="h-hero__cta">
+            <a href="chat.html" class="h-btn" id="cta-servicios">Pedir presupuesto gratis</a>
+            <a href="#servicios" class="h-link" id="cta-contacto">Ver qué hacemos ›</a>
         </div>
+    </section>
 
-        <div class="container hero-container">
-            <div class="hero-content">
-                <div class="hero-badge animate-fade-up">
-                    <span class="badge-dot"></span>
-                    Instaladores autorizados · Madrid y alrededores
-                </div>
+    <section class="h-stats" aria-label="TEF en cifras">
+        <div data-reveal="up">
+            <div class="h-stat__num"><span data-target="247">247</span>+</div>
+            <div class="h-stat__label">Trabajos terminados</div>
+        </div>
+        <div data-reveal="up" style="--d:0.1s">
+            <div class="h-stat__num"><span data-target="11">11</span> años</div>
+            <div class="h-stat__label">En el sector, desde 2013</div>
+        </div>
+        <div data-reveal="up" style="--d:0.2s">
+            <div class="h-stat__num"><span data-target="96">96</span>%</div>
+            <div class="h-stat__label">Repiten con nosotros</div>
+        </div>
+    </section>
 
-                <h1 class="hero-title animate-fade-up delay-1 hero-fade-element">
-                    Electricistas y telecomunicaciones<br>
-                    <span class="gradient-text">que cumplen lo que dicen</span>
-                </h1>
-                <p class="hero-subtitle animate-fade-up delay-2 hero-fade-element">
-                    Hacemos instalaciones eléctricas, fibra, antenas y domótica en Madrid y alrededores.
-                    Sin subcontratas, sin letra pequeña. Te damos el presupuesto antes de empezar
-                    y el boletín eléctrico cuando acabamos.
-                </p>
-                <div class="hero-cta-group animate-scale-in delay-3 hero-fade-element">
-                    <a href="chat.html" class="btn-primary" id="cta-servicios">
-                        Pedir presupuesto gratis
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" aria-hidden="true">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
+    <!-- ========== SERVICIOS ========== -->
+    <section class="h-section" id="servicios" aria-label="Nuestros servicios">
+        <div class="h-head" data-reveal="up">
+            <h2 class="h-title gt">Servicios</h2>
+            <p class="h-lead">Soluciones completas de telecomunicaciones e instalaciones eléctricas, a la medida de cada necesidad.</p>
+        </div>
+        <div class="h-grid">
+                <div class="h-cell h-cell--wide" data-reveal="up" style="--d:0s">
+                    <a class="h-card h-tile" href="instalaciones-electricas.html">
+                        <span class="h-tile__copy">
+                            <span class="h-tile__title">Instalaciones eléctricas</span>
+                            <span class="h-tile__sub">Cuadros, cableado completo y boletín eléctrico incluido. Material Eaton y Legrand.</span>
+                            <span class="h-tile__more h-arrow">Ver servicio ›</span>
+                        </span>
+                        <span class="h-tile__media">
+                            <span class="h-tile__frame">
+                                <span data-reveal="zoom" style="display:block">
+                                    <img class="h-tile__img h-zoom" src="images/servicio-electricidad.jpg" alt="Cuadro eléctrico Eaton instalado por técnicos TEF" loading="lazy" decoding="async">
+                                </span>
+                            </span>
+                        </span>
                     </a>
-                    <a href="#servicios" class="btn-outline" id="cta-contacto">
-                        Ver qué hacemos
+                </div>
+                <div class="h-cell" data-reveal="up" style="--d:0s">
+                    <a class="h-card h-tile" href="fibra-optica.html">
+                        <span class="h-tile__copy">
+                            <span class="h-tile__title">Redes</span>
+                            <span class="h-tile__sub">Cableado estructurado, racks y fibra hasta cada puesto en oficinas, locales y naves.</span>
+                            <span class="h-tile__more h-arrow">Ver servicio ›</span>
+                        </span>
+                        <span class="h-tile__media">
+                            <span class="h-tile__frame">
+                                <span data-reveal="zoom" style="display:block">
+                                    <img class="h-tile__img h-zoom" src="images/servicio-fibra.jpg" alt="Rack de fibra óptica y cableado estructurado instalado por TEF" loading="lazy" decoding="async">
+                                </span>
+                            </span>
+                        </span>
                     </a>
                 </div>
-                <div class="hero-stats animate-fade-up delay-4 hero-fade-element">
-                    <div class="hero-stat">
-                        <span class="stat-number" data-target="247">0</span><span class="stat-suffix">+</span>
-                        <span class="stat-label">Trabajos terminados</span>
-                    </div>
-                    <div class="stat-divider" aria-hidden="true"></div>
-                    <div class="hero-stat">
-                        <span class="stat-number" data-target="11">0</span><span class="stat-suffix"> años</span>
-                        <span class="stat-label">en el sector</span>
-                    </div>
-                    <div class="stat-divider" aria-hidden="true"></div>
-                    <div class="hero-stat">
-                        <span class="stat-number" data-target="96">0</span><span class="stat-suffix">%</span>
-                        <span class="stat-label">repiten con nosotros</span>
-                    </div>
+                <div class="h-cell" data-reveal="up" style="--d:0.08s">
+                    <a class="h-card h-tile" href="antenas-tv.html">
+                        <span class="h-tile__copy">
+                            <span class="h-tile__title">Antenas TDT y parabólicas</span>
+                            <span class="h-tile__sub">Instalación y reparación con medición de campo en viviendas y comunidades.</span>
+                            <span class="h-tile__more h-arrow">Ver servicio ›</span>
+                        </span>
+                        <span class="h-tile__media">
+                            <span class="h-tile__frame">
+                                <span data-reveal="zoom" style="display:block">
+                                    <img class="h-tile__img h-zoom" src="images/servicio-antenas.jpg" alt="Técnico TEF instalando antena TDT en tejado" loading="lazy" decoding="async">
+                                </span>
+                            </span>
+                        </span>
+                    </a>
                 </div>
-            </div>
-
-        </div>
-        <!-- Scroll indicator -->
-        <div class="scroll-indicator" aria-hidden="true">
-            <div class="scroll-dot"></div>
-        </div>
-    </section>
-
-    <!-- ========== SERVICES SECTION ========== -->
-    <section class="services" id="servicios" aria-label="Nuestros servicios">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-badge">Lo que ofrecemos</div>
-                <h2 class="section-title">Nuestros <span class="gradient-text">Servicios</span></h2>
-                <p class="section-subtitle">Soluciones integrales de telecomunicaciones e instalaciones eléctricas
-                    adaptadas a cada necesidad</p>
-            </div>
-
-            <div class="netflix-services-grid">
-
-                <!-- Redes -->
-                <a href="fibra-optica.html" class="netflix-svc-card reveal" id="servicio-fibra">
-                    <div class="netflix-svc-thumb">
-                        <img src="images/servicio-fibra.jpg"
-                            alt="Rack de fibra óptica y cableado estructurado instalado por TEF"
-                            class="netflix-svc-img" loading="lazy">
-                    </div>
-                    <div class="netflix-svc-body">
-                        <h3 class="netflix-svc-title">Redes</h3>
-                        <p class="netflix-svc-desc">Cableado estructurado, racks y fibra hasta cada puesto en oficinas, locales y naves.</p>
-                        <div class="netflix-svc-tags">
-                            <span>24h</span><span>Sin obras</span>
-                        </div>
-                        <span class="service-link">Ver servicio →</span>
-                    </div>
-                </a>
-
-                <!-- Antenas -->
-                <a href="antenas-tv.html" class="netflix-svc-card reveal" id="servicio-antenas">
-                    <div class="netflix-svc-thumb">
-                        <img src="images/servicio-antenas.jpg"
-                            alt="Técnico TEF instalando antena TDT en tejado"
-                            class="netflix-svc-img" loading="lazy">
-                    </div>
-                    <div class="netflix-svc-body">
-                        <h3 class="netflix-svc-title">Antenas TDT y Parabólicas</h3>
-                        <p class="netflix-svc-desc">Instalación y reparación con medición de campo en viviendas y comunidades.</p>
-                        <div class="netflix-svc-tags">
-                            <span>TDT</span><span>Satélite</span>
-                        </div>
-                        <span class="service-link">Ver servicio →</span>
-                    </div>
-                </a>
-
-                <!-- Instalaciones Eléctricas — CENTRO -->
-                <a href="instalaciones-electricas.html" class="netflix-svc-card reveal" id="servicio-cuadros">
-                    <div class="netflix-svc-thumb">
-                        <img src="images/servicio-electricidad.jpg"
-                            alt="Cuadro eléctrico Eaton instalado por técnicos TEF"
-                            class="netflix-svc-img" loading="lazy">
-                        <span class="netflix-svc-badge">Más popular</span>
-                    </div>
-                    <div class="netflix-svc-body">
-                        <h3 class="netflix-svc-title">Instalaciones Eléctricas</h3>
-                        <p class="netflix-svc-desc">Cuadros, cableado completo y boletín eléctrico incluido. Material Eaton y Legrand.</p>
-                        <div class="netflix-svc-tags">
-                            <span>RBT/ITC</span><span>Boletín</span><span>Eaton</span>
-                        </div>
-                        <span class="service-link">Ver servicio →</span>
-                    </div>
-                </a>
-
-                <!-- Video Vigilancia -->
-                <a href="domotica.html" class="netflix-svc-card reveal" id="servicio-domotica">
-                    <div class="netflix-svc-thumb">
-                        <img src="images/servicio-domotica.jpg"
-                            alt="Videoporteros Legrand instalados por TEF en comunidad de vecinos"
-                            class="netflix-svc-img" loading="lazy">
-                    </div>
-                    <div class="netflix-svc-body">
-                        <h3 class="netflix-svc-title">Video Vigilancia</h3>
-                        <p class="netflix-svc-desc">Videoporteros y cámaras de seguridad con control desde el móvil. Fermax y Legrand.</p>
-                        <div class="netflix-svc-tags">
-                            <span>Fermax</span><span>Dahua</span>
-                        </div>
-                        <span class="service-link">Ver servicio →</span>
-                    </div>
-                </a>
-
-                <!-- Obra Nueva -->
-                <a href="obra-nueva.html" class="netflix-svc-card reveal" id="servicio-obra-nueva">
-                    <div class="netflix-svc-thumb">
-                        <img src="images/servicio-obra-nueva.jpg"
-                            alt="Cableado eléctrico en techo durante obra nueva"
-                            class="netflix-svc-img" loading="lazy">
-                    </div>
-                    <div class="netflix-svc-body">
-                        <h3 class="netflix-svc-title">Obra Nueva y Reformas</h3>
-                        <p class="netflix-svc-desc">Proyecto eléctrico completo con constructoras y particulares, hasta el boletín.</p>
-                        <div class="netflix-svc-tags">
-                            <span>Llave en mano</span><span>Boletín</span>
-                        </div>
-                        <span class="service-link">Ver servicio →</span>
-                    </div>
-                </a>
-
-            </div>
+                <div class="h-cell h-cell--wide" data-reveal="up" style="--d:0s">
+                    <a class="h-card h-tile" href="domotica.html">
+                        <span class="h-tile__copy">
+                            <span class="h-tile__title">Video Vigilancia</span>
+                            <span class="h-tile__sub">Videoporteros y cámaras de seguridad con control desde el móvil. Fermax y Legrand.</span>
+                            <span class="h-tile__more h-arrow">Ver servicio ›</span>
+                        </span>
+                        <span class="h-tile__media">
+                            <span class="h-tile__frame">
+                                <span data-reveal="zoom" style="display:block">
+                                    <img class="h-tile__img h-zoom" src="images/servicio-cctv.jpg" alt="Cámara de seguridad instalada por TEF sobre una fachada" loading="lazy" decoding="async">
+                                </span>
+                            </span>
+                        </span>
+                    </a>
+                </div>
         </div>
     </section>
 
-    <!-- ========== CTA FINAL ========== -->
-    <section class="cta-final" aria-label="Llamada a la acción">
-        <div class="cta-inner">
-            <div class="cta-eyebrow" id="ctaEyebrow">TEF · Madrid · Desde 2013</div>
-            <div class="cta-words" id="ctaWords">
-                <span class="cta-w" data-type="white">Sin</span>
-                <span class="cta-w" data-type="blue">excusas.</span>
-                <span class="cta-w" data-type="white">Lo</span>
-                <span class="cta-w" data-type="white">hacemos</span>
-                <span class="cta-w" data-type="blue">bien</span>
-                <span class="cta-w" data-type="white">o no</span>
-                <span class="cta-w" data-type="white">lo</span>
-                <span class="cta-w" data-type="blue">hacemos.</span>
-            </div>
-            <p class="cta-final-sub" id="ctaFinalSub">Presupuesto en el día · Sin letra pequeña · Boletín incluido</p>
-            <div class="cta-final-btn-wrap" id="ctaFinalBtnWrap">
-                <a href="chat.html" class="btn-primary btn-large pulse-glow" id="cta-final-btn">
-                    Hablar con un técnico
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                </a>
-            </div>
+    <!-- ========== TRABAJOS ========== -->
+    <section class="h-section h-section--trabajos" id="proyectos" aria-label="Trabajos realizados">
+        <div class="h-head" data-reveal="up">
+            <h2 class="h-title gt">Nuestros trabajos</h2>
+            <p class="h-lead">Instalaciones reales. Desliza para ver el antes y el después.</p>
         </div>
-        <div class="cta-ticker-bar">
-            <div class="cta-ticker-track">
-                <span>Instalaciones Eléctricas</span><span class="ticker-dot">·</span>
-                <span>Redes</span><span class="ticker-dot">·</span>
-                <span>Antenas y TV</span><span class="ticker-dot">·</span>
-                <span>Alarma</span><span class="ticker-dot">·</span>
-                <span>Cuadros Eléctricos</span><span class="ticker-dot">·</span>
-                <span>Video Vigilancia</span><span class="ticker-dot">·</span>
-                <span>Fibra Óptica</span><span class="ticker-dot">·</span>
-                <span>Instalaciones Eléctricas</span><span class="ticker-dot">·</span>
-                <span>Redes</span><span class="ticker-dot">·</span>
-                <span>Antenas y TV</span><span class="ticker-dot">·</span>
-                <span>Alarma</span><span class="ticker-dot">·</span>
-                <span>Cuadros Eléctricos</span><span class="ticker-dot">·</span>
-                <span>Video Vigilancia</span><span class="ticker-dot">·</span>
-                <span>Fibra Óptica</span><span class="ticker-dot">·</span>
-                <span>Instalaciones Eléctricas</span><span class="ticker-dot">·</span>
-                <span>Redes</span><span class="ticker-dot">·</span>
-                <span>Antenas y TV</span><span class="ticker-dot">·</span>
-                <span>Alarma</span><span class="ticker-dot">·</span>
-                <span>Cuadros Eléctricos</span><span class="ticker-dot">·</span>
-                <span>Video Vigilancia</span><span class="ticker-dot">·</span>
-                <span>Fibra Óptica</span><span class="ticker-dot">·</span>
-                <span>Instalaciones Eléctricas</span><span class="ticker-dot">·</span>
-                <span>Redes</span><span class="ticker-dot">·</span>
-                <span>Antenas y TV</span><span class="ticker-dot">·</span>
-                <span>Alarma</span><span class="ticker-dot">·</span>
-                <span>Cuadros Eléctricos</span><span class="ticker-dot">·</span>
-                <span>Video Vigilancia</span><span class="ticker-dot">·</span>
-                <span>Fibra Óptica</span><span class="ticker-dot">·</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== TRABAJOS / SHOWCASE ========== -->
-    <section class="projects" id="proyectos" aria-label="Trabajos realizados">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-badge">Nuestro trabajo</div>
-                <h2 class="section-title">Nuestros <span class="gradient-text">Trabajos</span></h2>
-                <p class="section-subtitle">Instalaciones reales. Desliza para ver el antes y el después.</p>
-            </div>
+        <div>
             <div class="mural">
                 <button type="button" class="mural-card" data-tag="Eléctrico · Avería" aria-label="Comparar antes y después: Diferencial por armónicos">
                     <span class="mural-card__copy">
@@ -533,294 +399,612 @@
         </dialog>
     </section>
 
-    <!-- ========== SOCIAL PROOF SECTION ========== -->
-    <section class="social-proof" aria-label="Clientes y partners">
-        <div class="container">
-            <p class="social-proof-label">Somos instaladores oficiales</p>
-            <div class="logo-marquee" aria-hidden="false">
-                <div class="logo-marquee-track">
-                    <div class="client-logo"><span>COMELIT</span></div>
-                    <div class="client-logo"><span>TELEVÉS</span></div>
-                    <div class="client-logo"><span>TEGUI</span></div>
-                    <div class="client-logo"><span>GEMCORE</span></div>
-                    <div class="client-logo"><span>GOLMAR</span></div>
-                    <div class="client-logo"><span>FERMAX</span></div>
-                    <div class="client-logo"><span>ALCAD</span></div>
-                    <div class="client-logo" aria-hidden="true"><span>COMELIT</span></div>
-                    <div class="client-logo" aria-hidden="true"><span>TELEVÉS</span></div>
-                    <div class="client-logo" aria-hidden="true"><span>TEGUI</span></div>
-                    <div class="client-logo" aria-hidden="true"><span>GEMCORE</span></div>
-                    <div class="client-logo" aria-hidden="true"><span>GOLMAR</span></div>
-                    <div class="client-logo" aria-hidden="true"><span>FERMAX</span></div>
-                    <div class="client-logo" aria-hidden="true"><span>ALCAD</span></div>
-                    <div class="client-logo" aria-hidden="true"><span>COMELIT</span></div>
-                    <div class="client-logo" aria-hidden="true"><span>TELEVÉS</span></div>
-                    <div class="client-logo" aria-hidden="true"><span>TEGUI</span></div>
-                    <div class="client-logo" aria-hidden="true"><span>GEMCORE</span></div>
-                    <div class="client-logo" aria-hidden="true"><span>GOLMAR</span></div>
-                    <div class="client-logo" aria-hidden="true"><span>FERMAX</span></div>
-                    <div class="client-logo" aria-hidden="true"><span>ALCAD</span></div>
-                    <div class="client-logo" aria-hidden="true"><span>COMELIT</span></div>
-                    <div class="client-logo" aria-hidden="true"><span>TELEVÉS</span></div>
-                    <div class="client-logo" aria-hidden="true"><span>TEGUI</span></div>
-                    <div class="client-logo" aria-hidden="true"><span>GEMCORE</span></div>
-                    <div class="client-logo" aria-hidden="true"><span>GOLMAR</span></div>
-                    <div class="client-logo" aria-hidden="true"><span>FERMAX</span></div>
-                    <div class="client-logo" aria-hidden="true"><span>ALCAD</span></div>
+    <!-- ========== SOBRE NOSOTROS ========== -->
+    <section class="h-about" id="sobre-nosotros" aria-label="Sobre TEF">
+        <div class="h-head" data-reveal="up">
+            <h2 class="h-title gt">Once años. El mismo equipo.</h2>
+            <p class="h-lead">El mismo que te presupuesta, te instala. Sin intermediarios y sin subcontratas.</p>
+        </div>
+        <div class="h-history">
+                <div>
+                    <div class="h-history__line" data-reveal="line" style="--d:0.0s"></div>
+                    <div class="h-history__body" data-reveal="up" style="--d:0.0s">
+                        <div class="h-history__year">2013</div>
+                        <div class="h-history__title">Fundación de TEF</div>
+                        <div class="h-history__text">Arrancamos en Madrid con equipo propio y sin subcontratas.</div>
+                    </div>
                 </div>
+                <div>
+                    <div class="h-history__line" data-reveal="line" style="--d:0.1s"></div>
+                    <div class="h-history__body" data-reveal="up" style="--d:0.1s">
+                        <div class="h-history__year">2016</div>
+                        <div class="h-history__title">Instalador autorizado</div>
+                        <div class="h-history__text">Tramitación de boletines eléctricos y legalización de instalaciones.</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="h-history__line" data-reveal="line" style="--d:0.2s"></div>
+                    <div class="h-history__body" data-reveal="up" style="--d:0.2s">
+                        <div class="h-history__year">2019</div>
+                        <div class="h-history__title">Partners oficiales</div>
+                        <div class="h-history__text">CAME, COMELIT y TEGUI, distribuidores de las principales marcas.</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="h-history__line" data-reveal="line" style="--d:0.3s"></div>
+                    <div class="h-history__body" data-reveal="up" style="--d:0.3s">
+                        <div class="h-history__year">2022</div>
+                        <div class="h-history__title">+200 proyectos</div>
+                        <div class="h-history__text">Domótica, fibra, antenas, CCTV y obra nueva en toda la Comunidad de Madrid.</div>
+                    </div>
+                </div>
+        </div>
+        <p class="h-brands-label" data-reveal="up">Instaladores oficiales de</p>
+    </section>
+
+    <div class="h-mq" data-reveal="up" role="group" aria-label="Marcas de las que somos instaladores oficiales">
+        <div class="h-mq__track">
+                    <span class="h-brand">COMELIT</span>
+                    <span class="h-brand">TELEVÉS</span>
+                    <span class="h-brand">TEGUI</span>
+                    <span class="h-brand">GEMCORE</span>
+                    <span class="h-brand">GOLMAR</span>
+                    <span class="h-brand">FERMAX</span>
+                    <span class="h-brand">ALCAD</span>
+                    <span class="h-brand" aria-hidden="true">COMELIT</span>
+                    <span class="h-brand" aria-hidden="true">TELEVÉS</span>
+                    <span class="h-brand" aria-hidden="true">TEGUI</span>
+                    <span class="h-brand" aria-hidden="true">GEMCORE</span>
+                    <span class="h-brand" aria-hidden="true">GOLMAR</span>
+                    <span class="h-brand" aria-hidden="true">FERMAX</span>
+                    <span class="h-brand" aria-hidden="true">ALCAD</span>
+                    <span class="h-brand" aria-hidden="true">COMELIT</span>
+                    <span class="h-brand" aria-hidden="true">TELEVÉS</span>
+                    <span class="h-brand" aria-hidden="true">TEGUI</span>
+                    <span class="h-brand" aria-hidden="true">GEMCORE</span>
+                    <span class="h-brand" aria-hidden="true">GOLMAR</span>
+                    <span class="h-brand" aria-hidden="true">FERMAX</span>
+                    <span class="h-brand" aria-hidden="true">ALCAD</span>
+                    <span class="h-brand" aria-hidden="true">COMELIT</span>
+                    <span class="h-brand" aria-hidden="true">TELEVÉS</span>
+                    <span class="h-brand" aria-hidden="true">TEGUI</span>
+                    <span class="h-brand" aria-hidden="true">GEMCORE</span>
+                    <span class="h-brand" aria-hidden="true">GOLMAR</span>
+                    <span class="h-brand" aria-hidden="true">FERMAX</span>
+                    <span class="h-brand" aria-hidden="true">ALCAD</span>
+        </div>
+    </div>
+
+    <!-- ========== FRASE DE CIERRE ========== -->
+    <section class="h-closing" aria-label="Llamada a la acción">
+        <h2 class="h-closing__title gt" data-reveal="up">Lo hacemos bien o no lo hacemos.</h2>
+        <p class="h-lead" data-reveal="up">Presupuesto en el día. Sin letra pequeña. Boletín incluido.</p>
+        <div class="h-closing__cta" data-reveal="up" style="--d:0.1s">
+            <a href="chat.html" class="h-btn" id="cta-final-btn">Hablar con un técnico</a>
+        </div>
+    </section>
+
+    <!-- ========== RESEÑAS ========== -->
+    <section class="h-reviews" aria-label="Reseñas de clientes en Google">
+        <div class="h-head" data-reveal="up">
+            <h2 class="h-title gt">Lo que dicen nuestros clientes</h2>
+            <p class="h-lead">5,0 de 5 en Google, con 22 reseñas.</p>
+        </div>
+        <div class="h-mq h-mq--reviews" data-reveal="up">
+            <div class="h-mq__track">
+                    <figure class="h-card h-review">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Un trabajador excelente, super cuidadoso, muy amable, explica absolutamente todo de manera sencilla para que se entienda bien. Lo recomiendo 100%.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">O</span>
+                            <span>
+                                <span class="h-review__name">Oscar Pastur</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Excelente profesional. Inmediatez en la atención. Trato inmejorable.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">N</span>
+                            <span>
+                                <span class="h-review__name">Naira Lopez</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Sabe lo que hace, resuelve tus dudas, es educado y cumple profesionalmente. Yo he quedado muy contento.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">A</span>
+                            <span>
+                                <span class="h-review__name">Atila Jado</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Un gran profesional, muy puntual, amable y atento. Realiza su trabajo con mucha seriedad, cuidado y eficacia. Te explica todo perfectamente y transmite mucha confianza. Da gusto encontrar profesionales así. Sin duda, lo recomiendo al 100% y volvería a contar con él sin pensarlo.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">A</span>
+                            <span>
+                                <span class="h-review__name">Adriano Borrás</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Súper recomendable: rapidez y profesionalidad impecables en Madrid, solucionaron la avería y además dejaron instalada y configurada una lámpara de Amazon casi imposible de montar.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">N</span>
+                            <span>
+                                <span class="h-review__name">Nuria Pardo Cao</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Servicio excelente. Muy rápido y profesional. Totalmente recomendable.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">S</span>
+                            <span>
+                                <span class="h-review__name">Silvia De Las Sias Garcia</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Trabajo profesional, atención rápida y muy satisfactoria.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">C</span>
+                            <span>
+                                <span class="h-review__name">Concepción Gil Contreras</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Muy contento con el trabajo realizado, un gran profesional.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">D</span>
+                            <span>
+                                <span class="h-review__name">Daniel López</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Encantado con su trabajo, un buen profesional, serio y honesto.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">M</span>
+                            <span>
+                                <span class="h-review__name">Marta Grande</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Un chico muy profesional la verdad, con disponibilidad absoluta y el trabajo 10/10, muchas gracias.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">F</span>
+                            <span>
+                                <span class="h-review__name">fressaboy</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“El chico Antonio es un máquina total, servicio impecable y a buen precio.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">M</span>
+                            <span>
+                                <span class="h-review__name">Maria Luisa González</span>
+                                <span class="h-review__when">Reseña en Google · hace 3 semanas</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Rápido, eficaz, y las cosas que dieron problemas fueron ágiles en solucionar.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">C</span>
+                            <span>
+                                <span class="h-review__name">Carlos Gonzalez</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Antonio fue eficiente, prolijo y cobra razonablemente.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">E</span>
+                            <span>
+                                <span class="h-review__name">Eduardo Minardi</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Antonio gran electricista, rápido, eficaz y responsable.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">S</span>
+                            <span>
+                                <span class="h-review__name">Silvia Hernandez Campos</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Muy buen trabajo.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">E</span>
+                            <span>
+                                <span class="h-review__name">Emilio Proupin</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Muy bien trato.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">C</span>
+                            <span>
+                                <span class="h-review__name">Cristian Ivan Castro Villacrez</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Todo genial.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">S</span>
+                            <span>
+                                <span class="h-review__name">Soccer Futbol Breaks</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Profesional de primera.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">J</span>
+                            <span>
+                                <span class="h-review__name">José Francisco Ceron</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review" aria-hidden="true">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Un trabajador excelente, super cuidadoso, muy amable, explica absolutamente todo de manera sencilla para que se entienda bien. Lo recomiendo 100%.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">O</span>
+                            <span>
+                                <span class="h-review__name">Oscar Pastur</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review" aria-hidden="true">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Excelente profesional. Inmediatez en la atención. Trato inmejorable.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">N</span>
+                            <span>
+                                <span class="h-review__name">Naira Lopez</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review" aria-hidden="true">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Sabe lo que hace, resuelve tus dudas, es educado y cumple profesionalmente. Yo he quedado muy contento.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">A</span>
+                            <span>
+                                <span class="h-review__name">Atila Jado</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review" aria-hidden="true">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Un gran profesional, muy puntual, amable y atento. Realiza su trabajo con mucha seriedad, cuidado y eficacia. Te explica todo perfectamente y transmite mucha confianza. Da gusto encontrar profesionales así. Sin duda, lo recomiendo al 100% y volvería a contar con él sin pensarlo.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">A</span>
+                            <span>
+                                <span class="h-review__name">Adriano Borrás</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review" aria-hidden="true">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Súper recomendable: rapidez y profesionalidad impecables en Madrid, solucionaron la avería y además dejaron instalada y configurada una lámpara de Amazon casi imposible de montar.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">N</span>
+                            <span>
+                                <span class="h-review__name">Nuria Pardo Cao</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review" aria-hidden="true">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Servicio excelente. Muy rápido y profesional. Totalmente recomendable.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">S</span>
+                            <span>
+                                <span class="h-review__name">Silvia De Las Sias Garcia</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review" aria-hidden="true">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Trabajo profesional, atención rápida y muy satisfactoria.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">C</span>
+                            <span>
+                                <span class="h-review__name">Concepción Gil Contreras</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review" aria-hidden="true">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Muy contento con el trabajo realizado, un gran profesional.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">D</span>
+                            <span>
+                                <span class="h-review__name">Daniel López</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review" aria-hidden="true">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Encantado con su trabajo, un buen profesional, serio y honesto.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">M</span>
+                            <span>
+                                <span class="h-review__name">Marta Grande</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review" aria-hidden="true">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Un chico muy profesional la verdad, con disponibilidad absoluta y el trabajo 10/10, muchas gracias.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">F</span>
+                            <span>
+                                <span class="h-review__name">fressaboy</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review" aria-hidden="true">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“El chico Antonio es un máquina total, servicio impecable y a buen precio.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">M</span>
+                            <span>
+                                <span class="h-review__name">Maria Luisa González</span>
+                                <span class="h-review__when">Reseña en Google · hace 3 semanas</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review" aria-hidden="true">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Rápido, eficaz, y las cosas que dieron problemas fueron ágiles en solucionar.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">C</span>
+                            <span>
+                                <span class="h-review__name">Carlos Gonzalez</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review" aria-hidden="true">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Antonio fue eficiente, prolijo y cobra razonablemente.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">E</span>
+                            <span>
+                                <span class="h-review__name">Eduardo Minardi</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review" aria-hidden="true">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Antonio gran electricista, rápido, eficaz y responsable.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">S</span>
+                            <span>
+                                <span class="h-review__name">Silvia Hernandez Campos</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review" aria-hidden="true">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Muy buen trabajo.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">E</span>
+                            <span>
+                                <span class="h-review__name">Emilio Proupin</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review" aria-hidden="true">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Muy bien trato.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">C</span>
+                            <span>
+                                <span class="h-review__name">Cristian Ivan Castro Villacrez</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review" aria-hidden="true">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Todo genial.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">S</span>
+                            <span>
+                                <span class="h-review__name">Soccer Futbol Breaks</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="h-card h-review" aria-hidden="true">
+                        <div class="h-review__stars" role="img" aria-label="5 estrellas de 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9z"/></svg></div>
+                        <blockquote class="h-review__text">“Profesional de primera.”</blockquote>
+                        <figcaption class="h-review__who">
+                            <span class="h-review__initial" aria-hidden="true">J</span>
+                            <span>
+                                <span class="h-review__name">José Francisco Ceron</span>
+                                <span class="h-review__when">Reseña en Google · hace un mes</span>
+                            </span>
+                        </figcaption>
+                    </figure>
             </div>
         </div>
     </section>
 
-    <!-- ========== ABOUT / TIMELINE + CTA ========== -->
-    <section class="about" id="sobre-nosotros" aria-label="Sobre TEF">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-badge">Quiénes somos</div>
-            </div>
-
-            <!-- TIMELINE -->
-            <div class="timeline-wrapper">
-                <div class="timeline-line">
-                    <div class="timeline-line-fill" id="timelineFill"></div>
-                </div>
-
-                <!-- Fundación → DERECHA -->
-                <div class="timeline-item" id="tl1">
-                    <div class="tl-side"></div>
-                    <div class="tl-node"></div>
-                    <div class="tl-side tl-right">
-                        <div class="tl-year">2013</div>
-                        <div class="tl-title">Fundación de TEF</div>
-                        <div class="tl-desc">Arrancamos en Madrid con equipo propio y sin subcontratas.</div>
-                        <div class="tl-tag">Inicio</div>
-                    </div>
-                </div>
-
-                <!-- Certificación → IZQUIERDA -->
-                <div class="timeline-item" id="tl2">
-                    <div class="tl-side tl-left">
-                        <div class="tl-year">2016</div>
-                        <div class="tl-title">Certificación Instalador Autorizado</div>
-                        <div class="tl-desc">Tramitación de boletines eléctricos y legalización de instalaciones.</div>
-                        <div class="tl-tag">Certificación</div>
-                    </div>
-                    <div class="tl-node"></div>
-                    <div class="tl-side"></div>
-                </div>
-
-                <!-- Partners → DERECHA -->
-                <div class="timeline-item" id="tl3">
-                    <div class="tl-side"></div>
-                    <div class="tl-node"></div>
-                    <div class="tl-side tl-right">
-                        <div class="tl-year">2019</div>
-                        <div class="tl-title">Partners oficiales</div>
-                        <div class="tl-desc">CAME · COMELIT · TEGUI — distribuidores de las principales marcas.</div>
-                        <div class="tl-tag">Partnerships</div>
-                    </div>
-                </div>
-
-                <!-- Proyectos → IZQUIERDA -->
-                <div class="timeline-item" id="tl4">
-                    <div class="tl-side tl-left">
-                        <div class="tl-year">2022</div>
-                        <div class="tl-title">+200 proyectos completados</div>
-                        <div class="tl-desc">Domótica, fibra, antenas, CCTV y obra nueva en toda la Comunidad de Madrid.</div>
-                        <div class="tl-tag">Hito</div>
-                    </div>
-                    <div class="tl-node"></div>
-                    <div class="tl-side"></div>
-                </div>
-
-                <!-- Referente → DERECHA -->
-                <div class="timeline-item" id="tl5">
-                    <div class="tl-side"></div>
-                    <div class="tl-node tl-node--present"></div>
-                    <div class="tl-side tl-right">
-                        <div class="tl-year">Hoy</div>
-                        <div class="tl-title">Referente en Madrid</div>
-                        <div class="tl-desc">11 años. El mismo equipo. La misma exigencia.</div>
-                        <div class="tl-tag tl-tag--present">Presente</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CTA ROTATOR + BOTONES -->
-            <div class="cta-rotator-section" id="ctaSection">
-                <div class="cta-rotator-stage">
-                    <a href="chat.html" class="cta-rotator-item is-active">El mismo que te presupuesta, te instala. Sin intermediarios.</a>
-                    <a href="chat.html" class="cta-rotator-item">Madrid lleva 11 años llamándonos. Algo habremos hecho bien.</a>
-                    <a href="chat.html" class="cta-rotator-item">Avería hoy. Solución esta semana. Sin sorpresas en la factura.</a>
-                </div>
-                <div class="cta-rotator-dots">
-                    <div class="cta-dot active"></div>
-                    <div class="cta-dot"></div>
-                    <div class="cta-dot"></div>
-                </div>
-                <div class="cta-buttons">
-                    <a href="chat.html" class="btn-primary">Ver disponibilidad hoy</a>
-                    <a href="chat.html" class="btn-outline">Pedir presupuesto gratis</a>
-                </div>
+    <!-- ========== CONTACTO ========== -->
+    <section class="h-contact" id="contacto" aria-label="Formulario de contacto">
+        <div data-reveal="left">
+            <h2 class="h-title gt">Contactar con TEF</h2>
+            <p class="h-contact__lead">Cuéntanos qué necesitas y te llamamos hoy. Respondemos en menos de 2 horas en horario laboral.</p>
+            <div class="h-contact__data">
+                <div><small>Teléfono</small><a href="tel:+34645386684">+34 645 386 684</a></div>
+                <div><small>Correo</small><a href="mailto:info@tefmultiservicios.com">info@tefmultiservicios.com</a></div>
+                <div><small>Horario</small>Lunes a viernes, de 8:00 a 18:00. Urgencias 24/7</div>
             </div>
         </div>
-    </section>
+        <div data-reveal="right">
+            <form class="h-card contact-form-new" id="contact-form" action="https://api.staticforms.dev/submit" method="POST" target="_blank" novalidate>
+                <input type="hidden" name="apiKey" id="contact-api-key">
+                <input type="hidden" name="subject" id="contact-form-subject" value="Nueva Consulta Web TEF">
+                <input type="hidden" name="service" id="service-hidden" value="">
+                <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 
-    <!-- ========== CONTACT SECTION ========== -->
-    <section class="contact" id="contacto" aria-label="Formulario de contacto">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-badge"> Contáctanos</div>
-                <h2 class="section-title"><span class="gradient-text">Contactar</span> con TEF</h2>
-                <p class="section-subtitle">Sin formularios eternos. Cuéntanos qué necesitas y te llamamos hoy.</p>
-            </div>
-            <div class="contact-centered reveal">
-                <form class="contact-form-new glass-card" id="contact-form" action="https://api.staticforms.dev/submit" method="POST" target="_blank" novalidate>
-                    <input type="hidden" name="apiKey" id="contact-api-key">
-                    <input type="hidden" name="subject" id="contact-form-subject" value="Nueva Consulta Web TEF">
-                    <input type="hidden" name="service" id="service-hidden" value="">
-                    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-
+                <div>
                     <div class="chips-label">¿Qué servicio necesitas?</div>
                     <div class="service-chips">
-                        <button type="button" class="service-chip" data-value="Antenas">
-                            <span class="chip-icon">📡</span>
-                            <span class="chip-name">Antenas</span>
-                        </button>
-                        <button type="button" class="service-chip" data-value="Electricidad">
-                            <span class="chip-icon">💡</span>
-                            <span class="chip-name">Electricidad</span>
-                        </button>
-                        <button type="button" class="service-chip" data-value="Fibra">
-                            <span class="chip-icon">🌐</span>
-                            <span class="chip-name">Fibra</span>
-                        </button>
-                        <button type="button" class="service-chip" data-value="Video Vigilancia">
-                            <span class="chip-icon">📷</span>
-                            <span class="chip-name">Video Vigilancia</span>
-                        </button>
-                        <button type="button" class="service-chip" data-value="Obra nueva">
-                            <span class="chip-icon">🏗️</span>
-                            <span class="chip-name">Obra nueva</span>
-                        </button>
-                        <button type="button" class="service-chip" data-value="Otro">
-                            <span class="chip-icon">📋</span>
-                            <span class="chip-name">Otro</span>
-                        </button>
+                        <button type="button" class="service-chip" data-value="Antenas"><span class="chip-name">Antenas</span></button>
+                        <button type="button" class="service-chip" data-value="Electricidad"><span class="chip-name">Electricidad</span></button>
+                        <button type="button" class="service-chip" data-value="Fibra"><span class="chip-name">Fibra</span></button>
+                        <button type="button" class="service-chip" data-value="Video Vigilancia"><span class="chip-name">Video Vigilancia</span></button>
+                        <button type="button" class="service-chip" data-value="Otro"><span class="chip-name">Otro</span></button>
                     </div>
+                </div>
 
-                    <div class="form-divider"></div>
-
-                    <div class="form-row-2">
-                        <div class="form-group">
-                            <label for="name" class="form-label">Nombre *</label>
-                            <input type="text" id="name" name="name" class="form-input" placeholder="Tu nombre" required autocomplete="name">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone" class="form-label">Teléfono</label>
-                            <input type="tel" id="phone" name="phone" class="form-input" placeholder="+34 645 386 684" autocomplete="tel">
-                        </div>
-                    </div>
-
+                <div class="form-row-2">
                     <div class="form-group">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" id="email" name="email" class="form-input" placeholder="tu@email.com" autocomplete="email">
+                        <label for="name" class="form-label">Nombre *</label>
+                        <input type="text" id="name" name="name" class="form-input" placeholder="Tu nombre" required autocomplete="name">
                     </div>
-
                     <div class="form-group">
-                        <label for="message" class="form-label">¿En qué podemos ayudarte? *</label>
-                        <textarea id="message" name="message" class="form-input form-textarea" placeholder="Cuéntanos brevemente el trabajo..." rows="4" required></textarea>
+                        <label for="phone" class="form-label">Teléfono</label>
+                        <input type="tel" id="phone" name="phone" class="form-input" placeholder="+34 645 386 684" autocomplete="tel">
                     </div>
+                </div>
 
-                    <div class="form-submit-row">
-                        <button type="submit" class="btn-primary btn-full" id="form-submit-btn">
-                            Enviar solicitud
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" />
-                            </svg>
-                        </button>
-                        <p class="submit-note">Te llamamos en menos de 2 horas en horario laboral.</p>
-                    </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="tu@email.com" autocomplete="email">
+                </div>
 
-                    <div class="form-success" id="form-success" role="alert" aria-live="polite" aria-hidden="true">
-                        ¡Mensaje enviado! Te contactaremos pronto.
-                    </div>
-                </form>
-            </div>
+                <div class="form-group">
+                    <label for="message" class="form-label">¿En qué podemos ayudarte? *</label>
+                    <textarea id="message" name="message" class="form-input form-textarea" placeholder="Cuéntanos brevemente el trabajo..." rows="4" required></textarea>
+                </div>
+
+                <div class="form-submit-row">
+                    <button type="submit" class="h-btn" id="form-submit-btn">Enviar solicitud</button>
+                    <p class="submit-note">Te llamamos en menos de 2 horas en horario laboral.</p>
+                </div>
+
+                <div class="form-success" id="form-success" role="alert" aria-live="polite" aria-hidden="true">
+                    ¡Mensaje enviado! Te contactaremos pronto.
+                </div>
+            </form>
         </div>
     </section>
 
+    </main>
 
-
-    <!-- ========== FOOTER ========== -->
-    <footer class="footer" role="contentinfo">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="#inicio" class="nav-logo footer-logo" aria-label="TEF - Volver al inicio">
-                        <img src="images/logo-nuevo.png"
-                            alt="Logo de empresa instaladora eléctrica TEF" class="logo-img">
-                        <span class="logo-text">TEF</span>
+    <!-- ========== PIE ========== -->
+    <footer class="h-footer" role="contentinfo">
+        <div class="h-footer__grid">
+            <div>
+                <a href="#inicio" aria-label="TEF, volver al inicio"><img class="h-footer__logo" src="images/logo-nuevo.png" alt="Logo de empresa instaladora eléctrica TEF"></a>
+                <p class="h-footer__tag">Electricistas y telecomunicaciones en Madrid y alrededores.</p>
+                <div class="h-footer__socials">
+                    <a href="https://www.instagram.com/tef_multi/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram de TEF" title="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
                     </a>
-                    <p class="footer-tagline">Electricistas y telecomunicaciones<br>en Madrid y alrededores.</p>
-                    <div class="footer-socials">
-                        <a href="https://www.facebook.com/profile.php?id=61595297937913" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook de TEF" title="Facebook">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                            </svg>
-                        </a>
-                        <a href="https://www.instagram.com/tef_multi/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram de TEF" title="Instagram">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" aria-hidden="true">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                            </svg>
-                        </a>
-                        <a href="https://www.linkedin.com/in/tefmultiservicios/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn de TEF" title="LinkedIn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <path
-                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
-                                <circle cx="4" cy="4" r="2" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4 class="footer-col-title">Servicios</h4>
-                    <ul class="footer-links">
-                        <li><a href="fibra-optica.html" class="footer-link">Redes</a></li>
-                        <li><a href="instalaciones-electricas.html" class="footer-link">Instalación Eléctrica</a></li>
-                        <li><a href="antenas-tv.html" class="footer-link">Antenas TV</a></li>
-                        <li><a href="domotica.html" class="footer-link">Video Vigilancia</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4 class="footer-col-title">Empresa</h4>
-                    <ul class="footer-links">
-                        <li><a href="#sobre-nosotros" class="footer-link">Sobre Nosotros</a></li>
-                        <li><a href="#proyectos" class="footer-link">Proyectos</a></li>
-                        <li><a href="#contacto" class="footer-link">Contacto</a></li>
-                        <li><a href="#" class="footer-link">Política de Privacidad</a></li>
-                        <li><a href="#" class="footer-link">Aviso Legal</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4 class="footer-col-title">Contacto</h4>
-                    <ul class="footer-links">
-                        <li><a href="tel:+34600000000" class="footer-link">+34 645 386 684</a></li>
-                        <li><a href="mailto:info@tefmultiservicios.com" class="footer-link">info@tefmultiservicios.com</a></li>
-                        <li><span class="footer-link">Madrid y alrededores</span></li>
-                        <li><span class="footer-link">Lun–Vie: 8:00–18:00</span></li>
-                        <li><span class="footer-link">Urgencias 24/7</span></li>
-                    </ul>
+                    <a href="https://www.linkedin.com/in/tefmultiservicios/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn de TEF" title="LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" /><circle cx="4" cy="4" r="2" /></svg>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61595297937913" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook de TEF" title="Facebook">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
+                    </a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p class="footer-copyright">© 2026 TEF. Todos los derechos reservados.</p>
-                <p class="footer-made">Telecomunicaciones e Instalaciones Eléctricas Profesionales</p>
+            <div>
+                <h4 class="h-footer__title">Servicios</h4>
+                <ul class="h-footer__list">
+                    <li><a href="fibra-optica.html">Redes</a></li>
+                    <li><a href="instalaciones-electricas.html">Instalación eléctrica</a></li>
+                    <li><a href="antenas-tv.html">Antenas TV</a></li>
+                    <li><a href="domotica.html">Video Vigilancia</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="h-footer__title">Empresa</h4>
+                <ul class="h-footer__list">
+                    <li><a href="#sobre-nosotros">Sobre nosotros</a></li>
+                    <li><a href="#proyectos">Trabajos</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="#">Política de privacidad</a></li>
+                    <li><a href="#">Aviso legal</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="h-footer__title">Contacto</h4>
+                <ul class="h-footer__list">
+                    <li><a href="tel:+34645386684">+34 645 386 684</a></li>
+                    <li><a href="mailto:info@tefmultiservicios.com">info@tefmultiservicios.com</a></li>
+                    <li>Madrid y alrededores</li>
+                    <li>Lun–Vie: 8:00–18:00</li>
+                    <li>Urgencias 24/7</li>
+                </ul>
             </div>
         </div>
+        <p class="h-footer__legal">© 2026 TEF. Todos los derechos reservados. Telecomunicaciones e Instalaciones Eléctricas Profesionales.</p>
     </footer>
 
     <div class="electric-flash-overlay"></div>
@@ -872,6 +1056,7 @@
     <script src="chat.js"></script>
 
     <script src="script.js"></script>
+    <script src="home.js"></script>
 </body>
 
 </html>
