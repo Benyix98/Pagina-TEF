@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin.html
+Disallow: /chat-api/
+
+Sitemap: https://tefmultiservicios.com/sitemap.xml
