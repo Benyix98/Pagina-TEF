@@ -53,6 +53,9 @@
         .sv-faq-item p { margin: 0 0 20px; color: var(--h-gray); font-size: 17px; }
         .sv-brands { list-style: none; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 900px; margin: 16px auto 0; padding: 0 24px; }
         .sv-brands li { padding: 8px 16px; border: 1px solid var(--h-border); border-radius: 980px; color: var(--h-gray); font-size: 15px; letter-spacing: .04em; }
+        .h-stats--sv { grid-template-columns: repeat(3, minmax(0, 1fr)); padding-bottom: 24px; }
+        .h-stats--sv > :nth-child(4) { grid-column: 2; }
+        @media (max-width: 620px) { .h-stats--sv { grid-template-columns: minmax(0, 1fr); } .h-stats--sv > :nth-child(4) { grid-column: auto; } }
         .h-hero--sv { min-height: 0; padding: 150px 24px 40px; }
         .h-hero--sv .h-hero__title { font-size: clamp(34px, 5.6vw, 72px); }
         .h-hero--sv .h-hero__cta { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
@@ -91,7 +94,7 @@
         </div>
     </section>
 
-    <section class="h-stats" aria-label="TEF en cifras">
+    <section class="h-stats h-stats--sv" aria-label="TEF en cifras">
         <div><div class="h-stat__num">200+</div><div class="h-stat__label">Instalaciones</div></div>
         <div><div class="h-stat__num">11</div><div class="h-stat__label">Años en Madrid</div></div>
         <div><div class="h-stat__num">24h</div><div class="h-stat__label">Presupuesto</div></div>
