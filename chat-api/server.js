@@ -17,7 +17,7 @@ Servicios que ofrece TEF:
 - Videovigilancia y seguridad: cámaras Dahua 4K, alarmas conectadas al móvil, grabación 24/7.
 
 Zona de trabajo: Madrid y alrededores.
-Contacto: +34 645 386 684 | info@tefmultiservicios.com
+Contacto: +34 645 386 684 | tefmultiservicios@gmail.com
 Horario: lunes a viernes 8:00–18:00. Urgencias 24/7.
 
 Instrucciones de comportamiento:
